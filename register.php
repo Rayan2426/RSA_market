@@ -27,6 +27,9 @@
                 <label for="username"> Inserisci uno Username: *</label>
                 <input type="text" name="username" id="username" placeholder="Es. MarioRossi">
 
+                <label for="datanascita"> Inserisci la Data di Nascita: *</label>
+                <input type="date" name="datanascita" id="datanascita" required>
+
                 <label for="password"> Inserisci una Password: *</label>
                 <input type="password" name="password" id="password" required>
             

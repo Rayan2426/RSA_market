@@ -5,7 +5,7 @@ function getConn()
     $user = "root";
     $pass = "";
     $server = "localhost";
-    $dbname = "recensioni_ristoranti";
+    $dbname = "rsa_market";
 
     mysqli_report(MYSQLI_REPORT_OFF);
 

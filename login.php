@@ -28,8 +28,8 @@
         
         <form action="accounthandler.php" method="post">
             <div class="div-label">
-                <p> E-mail </p>
-                <input type="text" name="userid" id="userid" placeholder="example@domain.com">
+                <p> E-mail/Username </p>
+                <input type="text" name="userinfo" id="userid" placeholder="example@domain.com">
             </div>
             <div class="div-label">
                 <p> Password </p>
@@ -37,7 +37,6 @@
             </div>
             
             <input style="display: none" type="text" name="method" value="login">
-
             <button type="submit"> Accedi </button>
         </form>
 
