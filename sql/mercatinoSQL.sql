@@ -22,7 +22,7 @@ CREATE table UserLogs(
 );
 
 
-create table tipologie(
+create table Tipologie(
 nome varchar(30),
     descrizione varchar(255),
     PRIMARY KEY(nome)
@@ -55,7 +55,7 @@ FOREIGN KEY(tipologia) REFERENCES tipologie(nome) on delete no action on
 
 
 
-create table foto(
+create table Foto(
         ID integer AUTO_INCREMENT,
     urlImg varchar(255),
     Annuncio_ID integer not null,
@@ -73,16 +73,12 @@ ID integer AUTO_INCREMENT primary key,
 valore integer not null,
 time  timeStamp DEFAULT CURRENT_TIMESTAMP,
 Annuncio_ID integer not null,
-Stato integer not null,
+Stato varchar(30) not null,
 User_email varchar(255),
-  FOREIGN KEY(User_email) REFERENCES users(email) on delete cascade on                 
+  FOREIGN KEY(User_email) REFERENCES Users(email) on delete cascade on                 
         update cascade,
- FOREIGN KEY(stato) REFERENCES Stati(nome) on delete no action on                 
+ FOREIGN KEY(Stato) REFERENCES Stati(nome) on delete no action on                 
         update cascade,
  FOREIGN KEY(Annuncio_ID) REFERENCES Annunci(ID) on delete cascade on                 
         update cascade
-
-
-
-
 )
