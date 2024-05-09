@@ -12,16 +12,16 @@ function isValid($var)
 
 function checkSessionCredentials(mysqli $conn)
 {
-    $userid = $_SESSION["userid"];
+    $email = $_SESSION["email"];
     $password = $_SESSION["password"];
     $errormessage = "credenziali di sessione invalide";
 
-    if (!isset($userid) || empty($userid) || !isset($password) || empty($password)) {
+    if (!isset($email) || empty($email) || !isset($password) || empty($password)) {
         $_SESSION["login_error"] = $errormessage;
         redirect("login.php");
     }
 
-    $sql = "select username,password from utente where id = '$userid'";
+    $sql = "select username,password from utente where email = '$email'";
 
 
     $result = $conn->query($sql);
@@ -37,6 +37,5 @@ function checkSessionCredentials(mysqli $conn)
         $_SESSION["login_error"] = $errormessage;
         redirect("login.php");
     }
-    return $row["username"];
 }
 ?>
