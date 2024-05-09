@@ -1,0 +1,131 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: none;
+    font-family: "Poetsen One", sans-serif;
+}
+
+body{
+    background-color: floralwhite;
+    height: 100vh;
+}
+
+header,
+footer{
+    width: 100%;
+    height: 150px;
+    background-color: #001933;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img{
+    height: 100px;
+    width: 100px;
+    margin: 50px;
+    border: 2px solid floralwhite;
+    border-radius: 50px;
+}
+
+.div-header{
+    color: floralwhite; 
+}
+
+.div-header h1{
+    font-size: 50px;
+    text-align: center;
+}
+
+.h3-title{
+    font-size: 40px;
+    text-align: center;
+    padding-top: 65px;
+    color: #001933;
+}
+
+form{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    background-color: #E0E0E0;
+    border: 2px solid #001933;
+    border-radius: 50% 10% 50% 10% / 10% 50% 10% 50%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div-label{
+    padding: 30px 0;
+}
+
+.div-label p{
+    font-size: 25px;
+    color: #001933;
+}
+
+.div-label input[type=text],
+.div-label input[type=password]{
+    font-size: 20px;
+    width: 400px;
+    height: 40px;
+    background-color: floralwhite;
+    border: 2px solid #001933;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+form button{
+    margin-bottom: 30px;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    background-color: #001933;
+    color: floralwhite;
+    border-radius: 10px;
+    transition: 0.7s;
+}
+
+form button:hover{
+    cursor: pointer;
+    border: 1px solid yellow;
+    color: yellow;
+    transition: 0.7s;
+}
+
+.div-links{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 18px;
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div-links a{
+    margin-left: 10px;
+    color: #001933;
+    position: relative;
+    text-decoration: none;
+}
+
+.div-links a::after{
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #001933;
+    transition: all 0.3s ease;
+}
+
+.div-links a:hover::after{
+    width: 100%;
+}
