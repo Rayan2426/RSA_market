@@ -5,51 +5,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <title>RSA Market | Register</title>
 </head>
 
 <body>
+    <header>
+        <img src="images/logo.jpg">
+        <div class="div-header">
+            <h1> RSA Market </h1>
+            <p> Tutto quello che vuoi, proponendo il prezzo! </p>
+        </div>
+        <img src="images/logo.jpg">    
+    </header>
+
     <div id="register-form">
+        <h3 class="h3-title"> Effettua la registrazione a RSA Market compilando questo semplice form. </h3>
+        <p style="padding-top: 20px; text-align: center;"> I campi contrassegnati da * sono obbligatori. </p>
         <div>
             <form action="accounthandler.php" method="post">
-                <h3 class="pb-2"> Effettua la registrazione a RSA Market compilando questo semplice form. </h3>
+                <div class="div-label">
+                    <p> Inserisci un'E-mail: *</p>
+                    <input type="email" name="email" id="email" placeholder="example@gmail.com" required> 
+                </div>
 
-                <label for="email"> Inserisci un'E-mail: *</label>
-                <input type="email" name="email" id="email" placeholder="example@gmail.com" required> 
+                <div class="div-label">
+                    <p> Inserisci un Nome: *</p>
+                    <input type="text" name="nome" id="nome" placeholder="Es. Mario" required>
+                </div>
 
-                <label for="nome"> Inserisci un Nome: *</label>
-                <input type="text" name="nome" id="nome" placeholder="Es. Mario">
+                <div class="div-label">
+                    <p> Inserisci un Cognome: *</p>
+                    <input type="text" name="cognome" id="cognome" placeholder="Es. Rossi" required>
+                </div>
 
-                <label for="cognome"> Inserisci un Cognome: *</label>
-                <input type="text" name="cognome" id="cognome" placeholder="Es. Rossi" required>
+                <div class="div-label">
+                    <p> Inserisci uno Username: *</p>
+                    <input type="text" name="username" id="username" placeholder="Es. MarioRossi" required>
+                </div>
 
-                <label for="username"> Inserisci uno Username: *</label>
-                <input type="text" name="username" id="username" placeholder="Es. MarioRossi">
+                <div class="div-label">
+                    <p> Inserisci la Data di Nascita: *</p>
+                    <input type="date" name="datanascita" id="datanascita" required>
+                </div>
 
-                <label for="datanascita"> Inserisci la Data di Nascita: *</label>
-                <input type="date" name="datanascita" id="datanascita" required>
-
-                <label for="password"> Inserisci una Password: *</label>
-                <input type="password" name="password" id="password" required>
+                <div class="div-label">
+                    <p> Inserisci una Password: *</p>
+                    <input type="password" name="password" id="password" required>
+                </div>
             
                 <input style="display: none;" type="text" name="method" value="register">
-                <input type="submit">Registrati</input>
+                <button type="submit">Registrati</button>
             </form>
             
-            <div>
+            <div class="div-links">
                 <a href="login.php"> Hai già un account? </a>
+                |
+                <a href="#"> Password dimenticata? </a>
             </div>
-
-            <p> I campi contrassegnati da * sono obbligatori. </p>
         </div>
         <?php
-        $emessage = !isset($_SESSION["register_error"]) || empty($_SESSION["register_error"]) ? "" : "
-        <p class='text-danger'>{$_SESSION['register_error']}</p>";
-        echo $emessage;
+            $emessage = !isset($_SESSION["register_error"]) || empty($_SESSION["register_error"]) ? "" : "
+                <p class='errors'>{$_SESSION['register_error']}</p>";
+            echo $emessage;
         ?>
         <br>
     </div>
+
+    <footer>
+
+    </footer>
 </body>
 
 </html>

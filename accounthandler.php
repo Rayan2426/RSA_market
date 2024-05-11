@@ -14,7 +14,7 @@ function isValid($var)
 }
 
 if (!isValid($method)) {
-    $_SESSION["login_error"] = "il metodo '$method' selezionato non e' valido!";
+    $_SESSION["login_error"] = "Il metodo '$method' selezionato non e' valido!";
     redirect("login.php");
 }
 
@@ -26,7 +26,7 @@ switch ($method) {
     case 'login':
         $userinfo = $_POST["userinfo"];
         $password = $_POST["password"];
-        $errormessage = "email or password are invalid! try again";
+        $errormessage = "L'email o la password sono invalide! Prova di nuovo.";
         
         if (!isValid($userinfo) || !isValid($password)) {
             $_SESSION["login_error"] = $errormessage;
@@ -74,39 +74,39 @@ switch ($method) {
             !isValid($username) ||
             !isValid($password) ||
             !isValid($datanascita)) {
-            $_SESSION["register_error"] = "invalid fields, please check again for errors!";
+            $_SESSION["register_error"] = "Campi invalidi! Tenta di nuovo";
             redirect("register.php");
         }
 
         if (preg_match("#[<>\"'%;(){}&/\\ ]#i", $email)) {
-            $_SESSION["register_error"] = "email cannot contain # [] <> \" ' % ; () & / \\ or spaces";
+            $_SESSION["register_error"] = "L'email non puo' contenere i seguenti caratteri: # [] <> \" ' % ; () & / \\ o spazi";
             redirect("register.php");
         }
 
         if (preg_match("#[<>\"'%;(){}&./\\ ]#i", $username)) {
-            $_SESSION["register_error"] = "username cannot contain # [] <> \" ' % ; () & / . \\ or spaces";
+            $_SESSION["register_error"] = "L'username non puo' contenere i seguenti caratteri: # [] <> \" ' % ; () & / . \\ o spazi";
             redirect("register.php");
         }
 
         if (preg_match("#[<>\"'%;(){}&.\\/]#i", $name)) {
-            $_SESSION["register_error"] = "name cannot contain # [] <> \" ' % ; () & / . \\";
+            $_SESSION["register_error"] = "Il nome non puo' contenere i seguenti caratteri: # [] <> \" ' % ; () & / . \\";
             redirect("register.php");
         }
 
         if (preg_match("#[<>\"'%;(){}&.\\/]#i", $surname)) {
-            $_SESSION["register_error"] = "surname cannot contain # [] <> \" ' % ; () & / . \\";
+            $_SESSION["register_error"] = "Il cognome non può contenere i seguenti caratteri: # [] <> \" ' % ; () & / . \\";
             redirect("register.php");
         }
 
         $datanascita = explode("-",$datanascita);
 
         if(count($datanascita) !== 3){
-            $_SESSION["register_error"] = "invalid date format";
+            $_SESSION["register_error"] = "Formato data non valido!";
             redirect("register.php");
         }
 
         if(!is_numeric($datanascita[0]) || !is_numeric($datanascita[1]) || !is_numeric($datanascita[2])){
-            $_SESSION["register_error"] = "all date fields must be numeric";
+            $_SESSION["register_error"] = "Tutti i campi della data dovrebbero essere numerici!";
             redirect("register.php");
         }
 
@@ -123,7 +123,7 @@ switch ($method) {
             $_SESSION["login_error"] = "";
             redirect("login.php");
         } else {
-            $_SESSION["register_error"] = "an account with the chosen email or username already exists! " . $conn->error;
+            $_SESSION["register_error"] = "Esiste gia' un account con queste credenziali! " . $conn->error;
             redirect("register.php");
         }
         break;
@@ -150,7 +150,7 @@ switch ($method) {
 
         //REDRIRECTING IF ANY OF THE ESSENTIAL POST DATA IS INVALID
         if (!isValid($newemail) || !isValid($newname) || !isValid($newsurname) || !isValid($newusername)) {
-            $_SESSION["cred_change_status"] = "invalid fields, please check again for errors!";
+            $_SESSION["cred_change_status"] = "Campi invalidi! Prova di nuovo.";
             redirect("account.php");
         }
 
@@ -164,16 +164,16 @@ switch ($method) {
 
             //IF THE EMAIL IS ALREADY ASSOCIATED TO ANY ACCOUNT
             if (mysqli_affected_rows($conn) > 0) {
-                $outcome = "the new inserted email is already taken<br>";
+                $outcome = "La nuova e-mail inserita e' gia' utilizzata da un'altro account!<br>";
             } else {//CHANGE CURRENT USER EMAIL TO THE NEW ONE
                 $sql = "UPDATE users SET email = '$newemail' WHERE email = '$currentemail'";
 
                 $conn->query($sql);
                 if (mysqli_affected_rows($conn) > 0) {
                     $_SESSION["email"] = $newemail;
-                    $outcome .= "email changed successfully<br>";
+                    $outcome .= "E-mail cambiata con successo!<br>";
                 } else {
-                    $outcome .= "couldn't find user's account while changing email<br>";
+                    $outcome .= "Non e' stato possibile trovare un account con questa email!<br>";
                 }
             }
         }
@@ -184,7 +184,7 @@ switch ($method) {
             $conn->query($sql);
 
             if (mysqli_affected_rows($conn) > 0) {
-                $outcome .= "the new inserted username is already taken<br>";
+                $outcome .= "Il nuovo username inserito e' gia' utilizzato da un altro account!<br>";
             } else {
                 //CHANGE CURRENT USER USERNAME TO THE NEW ONE
                 $sql = "UPDATE users SET username = '$newusername' WHERE email = '$currentemail'";
@@ -194,10 +194,10 @@ switch ($method) {
                 $conn->query($sql);
 
                 if (mysqli_affected_rows($conn) > 0) {
-                    $outcome .= "username changed successfully<br>";
+                    $outcome .= "Username cambiato con successo!<br>";
                     $_SESSION["username"] = $newusername;
                 } else {
-                    $outcome .= "couldn't find user's account while changing username<br>";
+                    $outcome .= "Non e' stato possibile trovare un account con questo username!<br>";
                 }
             }
         }
@@ -210,13 +210,11 @@ switch ($method) {
             $conn->query($sql);
 
             if (mysqli_affected_rows($conn) > 0) {
-                $outcome .= "name changed successfully<br>";
+                $outcome .= "Nome cambiato con successo!<br>";
                 $_SESSION["name"] = $newname;
             } else {
-                $outcome .= "couldn't find user's account while changing name<br>";
+                $outcome .= "Non e' stato possibile trovare un account con questo nome!<br>";
             }
-
-
         }
 
         //IF THE USER WANTS TO CHANGE SURNAME
@@ -226,10 +224,10 @@ switch ($method) {
             $conn->query($sql);
 
             if (mysqli_affected_rows($conn) > 0) {
-                $outcome .= "surname changed successfully<br>";
+                $outcome .= "Cognome cambiato con successo!<br>";
                 $_SESSION["surname"] = $newsurname;
             } else {
-                $outcome .= "couldn't find user's account while changing surname<br>";
+                $outcome .= "Non e' stato possibile trovare un account con questo cognome!<br>";
             }
         }
 
@@ -240,7 +238,7 @@ switch ($method) {
             $oldpass = hash('sha256', $oldpass);
 
             if ($oldpass != $currentpass) {
-                $outcome .= "please insert the correct password";
+                $outcome .= "Inserisci la password corretta!";
             } else {
                 //CHANGE CURRENT USER PASSWORD TO THE NEW ONE
                 $sql = "UPDATE users SET password = '$newpass' WHERE email = '$currentemail'";
@@ -250,14 +248,14 @@ switch ($method) {
                 $conn->query($sql);
 
                 if (mysqli_affected_rows($conn) > 0) {
-                    $outcome .= "password changed successfully<br>";
+                    $outcome .= "Password inserita con successo!<br>";
                     $_SESSION["password"] = $newpass;
                 } else {
-                    $outcome .= "couldn't find user's account while changing password<br>";
+                    $outcome .= "Non e' stato possibile trovare un account con questa password!<br>";
                 }
             }
         } else if (isValid($newpass) != isValid($oldpass)) {
-            $outcome .= "insert all fields of new and old password to change it<br>";
+            $outcome .= "Inserisci tutti i campi per cambiare la password corrente!<br>";
         }
 
         $_SESSION["cred_change_status"] = $outcome;

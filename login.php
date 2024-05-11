@@ -41,9 +41,9 @@
         </form>
 
         <?php
-        $emessage = !isset($_SESSION["login_error"]) || empty($_SESSION["login_error"]) ? "" : "
-                <br><p>{$_SESSION['login_error']}</p>";
-        echo $emessage;
+            $emessage = !isset($_SESSION["login_error"]) || empty($_SESSION["login_error"]) ? "" : "
+                <br><p class='errors'>{$_SESSION['login_error']}</p>";
+            echo $emessage;
         ?>
     </div>
 

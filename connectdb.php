@@ -12,7 +12,7 @@ function getConn()
     $conn = new mysqli($server, $user, $pass, $dbname);
 
     if ($conn->connect_error) {
-        echo "AN ERROR OCCURRED DURING THE CONNECTION TO THE DATABASE<br>";
+        echo "<p> ERRORE DI CONNESSIONE AL DATABASE</p><br>";
         exit();
     }
 
