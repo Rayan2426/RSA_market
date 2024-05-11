@@ -1,6 +1,6 @@
-﻿CREATE table Users(
-        username varchar(50) not null,
-    email varchar(255),
+CREATE table Users(
+    username varchar(50) not null,
+    email varchar(128),
     password varchar(256) not null,
     nome varchar(50) not null,
     cognome varchar(50) not null,
@@ -14,7 +14,7 @@
 CREATE table UserLogs(
         ID integer AUTO_INCREMENT,
     logTime timeStamp DEFAULT CURRENT_TIMESTAMP,
-    User_email varchar(255),
+    User_email varchar(128),
     PRIMARY KEY (ID),
     unique (logTime, User_email),
     FOREIGN KEY (User_email) REFERENCES Users(email) on delete no action
@@ -40,7 +40,7 @@ CREATE TABLE Annunci(
         ID integer AUTO_INCREMENT,
     nome varchar(50) not null,
     descrizione varchar(255) default null,
-    user_email varchar(255) not null,
+    user_email varchar(128) not null,
 stato varchar(30) not null,
 tipologia varchar(30) not null,
     PRIMARY KEY(ID),
@@ -74,7 +74,7 @@ valore integer not null,
 time  timeStamp DEFAULT CURRENT_TIMESTAMP,
 Annuncio_ID integer not null,
 Stato varchar(30) not null,
-User_email varchar(255),
+User_email varchar(128),
   FOREIGN KEY(User_email) REFERENCES Users(email) on delete cascade on                 
         update cascade,
  FOREIGN KEY(Stato) REFERENCES Stati(nome) on delete no action on                 
