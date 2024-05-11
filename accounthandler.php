@@ -33,7 +33,7 @@ switch ($method) {
             redirect("login.php");
         }
         
-        $sql = "select email,username,nome,cognome,datanascita,password from users where username = '$userinfo' or email = '$userinfo'";
+        $sql = "select email,username,nome,cognome,datanascita,password from Users where username = '$userinfo' or email = '$userinfo'";
         $result = $conn->query($sql);
         
         if (mysqli_affected_rows($conn) < 0) {
@@ -53,8 +53,11 @@ switch ($method) {
             $_SESSION["password"] = $password;
             $_SESSION["register_error"] = "";
             $_SESSION["login_error"] = "";
-            $sql = "insert into userlogs(user_email) value('{$row['email']}')";
+            $sql = "insert into UserLogs(User_email) value('{$row['email']}')";
             $conn->query($sql);
+            if($conn->affected_rows < 0){
+                echo $conn->error;
+            }
             redirect("index.php");
         } else {
             $_SESSION["login_error"] = $errormessage;
@@ -114,7 +117,7 @@ switch ($method) {
         $datanascita = $datanascita[0] . "-" . $datanascita[1] . "-" . $datanascita[2];
 
         $password = hash('sha256', $password);
-        $sql = "insert into users (email,nome,cognome,username,datanascita,password)
+        $sql = "insert into Users (email,nome,cognome,username,datanascita,password)
             value ('$email','$name','$surname','$username','$datanascita','$password')";
 
         $conn->query($sql);
@@ -160,14 +163,14 @@ switch ($method) {
 
         //IF THE USER WANTS TO CHANGE EMAIL
         if ($currentemail != $newemail) {
-            $sql = "SELECT * FROM users WHERE email = '$newemail'";
+            $sql = "SELECT * FROM Users WHERE email = '$newemail'";
             $result = $conn->query($sql);
 
             //IF THE EMAIL IS ALREADY ASSOCIATED TO ANY ACCOUNT
             if (mysqli_affected_rows($conn) > 0) {
                 $outcome = "La nuova e-mail inserita e' gia' utilizzata da un'altro account!<br>";
             } else {//CHANGE CURRENT USER EMAIL TO THE NEW ONE
-                $sql = "UPDATE users SET email = '$newemail' WHERE email = '$currentemail'";
+                $sql = "UPDATE Users SET email = '$newemail' WHERE email = '$currentemail'";
 
                 $conn->query($sql);
                 if (mysqli_affected_rows($conn) > 0) {
@@ -181,14 +184,14 @@ switch ($method) {
 
         //IF THE USER WANTS TO CHANGE USERNAME
         if ($currentusername != $newusername) {
-            $sql = "SELECT * FROM users WHERE username = '$newusername'";
+            $sql = "SELECT * FROM Users WHERE username = '$newusername'";
             $conn->query($sql);
 
             if (mysqli_affected_rows($conn) > 0) {
                 $outcome .= "Il nuovo username inserito e' gia' utilizzato da un altro account!<br>";
             } else {
                 //CHANGE CURRENT USER USERNAME TO THE NEW ONE
-                $sql = "UPDATE users SET username = '$newusername' WHERE email = '$currentemail'";
+                $sql = "UPDATE Users SET username = '$newusername' WHERE email = '$currentemail'";
 
                 $_SESSION["username"] = $newusername;
 
@@ -206,7 +209,7 @@ switch ($method) {
         //IF THE USER WANTS TO CHANGE NAME
         if ($currentname != $newname) {
 
-            $sql = "UPDATE users SET nome = '$newname' WHERE email = '$currentemail'";
+            $sql = "UPDATE Users SET nome = '$newname' WHERE email = '$currentemail'";
 
             $conn->query($sql);
 
@@ -220,7 +223,7 @@ switch ($method) {
 
         //IF THE USER WANTS TO CHANGE SURNAME
         if ($currentsurname != $newsurname) {
-            $sql = "UPDATE users SET cognome = '$newsurname' WHERE email = '$currentemail'";
+            $sql = "UPDATE Users SET cognome = '$newsurname' WHERE email = '$currentemail'";
 
             $conn->query($sql);
 
@@ -242,7 +245,7 @@ switch ($method) {
                 $outcome .= "Inserisci la password corretta!";
             } else {
                 //CHANGE CURRENT USER PASSWORD TO THE NEW ONE
-                $sql = "UPDATE users SET password = '$newpass' WHERE email = '$currentemail'";
+                $sql = "UPDATE Users SET password = '$newpass' WHERE email = '$currentemail'";
 
                 $_SESSION["password"] = $newpass;
 

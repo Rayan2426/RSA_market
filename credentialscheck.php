@@ -21,7 +21,7 @@ function checkSessionCredentials(mysqli $conn)
         redirect("login.php");
     }
 
-    $sql = "select username,password from users where email = '$email'";
+    $sql = "select username,password from Users where email = '$email'";
 
 
     $result = $conn->query($sql);
