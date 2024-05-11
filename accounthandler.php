@@ -53,7 +53,8 @@ switch ($method) {
             $_SESSION["password"] = $password;
             $_SESSION["register_error"] = "";
             $_SESSION["login_error"] = "";
-            
+            $sql = "insert into userlogs(user_email) value('{$row['email']}')";
+            $conn->query($sql);
             redirect("index.php");
         } else {
             $_SESSION["login_error"] = $errormessage;
@@ -150,7 +151,7 @@ switch ($method) {
 
         //REDRIRECTING IF ANY OF THE ESSENTIAL POST DATA IS INVALID
         if (!isValid($newemail) || !isValid($newname) || !isValid($newsurname) || !isValid($newusername)) {
-            $_SESSION["cred_change_status"] = "Campi invalidi! Prova di nuovo.";
+            $_SESSION["cred_change_status"] = "Campi non validi! Prova di nuovo.";
             redirect("account.php");
         }
 

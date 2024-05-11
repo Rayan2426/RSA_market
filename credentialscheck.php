@@ -14,10 +14,10 @@ function checkSessionCredentials(mysqli $conn)
 {
     $email = $_SESSION["email"];
     $password = $_SESSION["password"];
+    $_SESSION["login_error"] = null;
     $errormessage = "<p class='errors'>credenziali di sessione invalide.</p>";
 
     if (!isset($email) || empty($email) || !isset($password) || empty($password)) {
-        $_SESSION["login_error"] = $errormessage;
         redirect("login.php");
     }
 

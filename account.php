@@ -20,7 +20,7 @@ session_start();
         include_once("./connectdb.php");
         include_once("./credentialscheck.php");
         $conn = getConn();
-        $username = checkSessionCredentials($conn);
+        checkSessionCredentials($conn);
         include("./navbar.php");
     ?>
     </div>
@@ -30,16 +30,11 @@ session_start();
             <form action="process.php" method="post">
                 <h3> Compila questo semplice form per cambiare password. </h3>
                 <?php
-                $sql = "select email,username,nome,cognome from utente where username = '$username'";
 
-                $result = $conn->query($sql);
-
-                $data = $result->fetch_assoc();
-
-                $email = $data["email"];
-                $username = $data["username"];
-                $nome = $data["nome"];
-                $cognome = $data["cognome"];
+                $email = $_SESSION["email"];
+                $username = $_SESSION["username"];
+                $nome = $_SESSION["nome"];
+                $cognome = $_SESSION["cognome"];
 
                 $form = "<label for='email'>Email</label>
                             <input type='text' name='email' value='$email' id='email'>
@@ -58,7 +53,7 @@ session_start();
                 ?>
                 <br>
                 <input style="display: none" type="text" name="method" value="changecreds">
-                <button class="btn btn-primary" type="submit">Cambia Passwrod</button>
+                <button class="btn btn-primary" type="submit">Cambia Password</button>
             </form>
         </div>
         <?php
