@@ -1,2 +1,2 @@
 Schema er
-(./sql/DigrmMercatino.png)
+![ER SCHEME IMAGE NOT FOUND](/sql/DigrmMercatino.png)
