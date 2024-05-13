@@ -4,8 +4,6 @@ include_once("connectdb.php");
 include_once("credentialscheck.php");
 $conn = getConn();
 checkSessionCredentials($conn);
-
-var_dump($_SESSION);
 ?>
 
 zucci lavora e facci sta index
@@ -16,5 +14,5 @@ zucci lavora e facci sta index
 
 <?php
 echo "<p>{$_SESSION['username']}</p>
-<img src={$_SESSION['profileimg']} width=256 height=256>";
+<img src={$_SESSION['profileimg']} width=25 height=25>";
 ?>

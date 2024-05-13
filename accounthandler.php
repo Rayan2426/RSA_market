@@ -51,7 +51,7 @@ switch ($method) {
             $_SESSION["cognome"] = $row["cognome"];
             $_SESSION["datanascita"] = $row["datanascita"];
             $_SESSION["password"] = $password;
-            $_SESSION["profileimg"] = isValid($row["fotoprofilo"]) ? $row["fotoprofilo"] : "https://pavlov5d2024.altervista.org/images/defaultprofileimg.png";
+            $_SESSION["profileimg"] = isValid($row["fotoprofilo"]) ? $row["fotoprofilo"] : "http://pavlov5d2024.altervista.org/images/defaultprofileimage.png";
             $_SESSION["register_error"] = "";
             $_SESSION["login_error"] = "";
             $sql = "insert into UserLogs(User_email) value('{$row['email']}')";
@@ -83,22 +83,22 @@ switch ($method) {
             redirect("register.php");
         }
 
-        if (preg_match("#[<>\"'%;(){}&/\\ ]#i", $email)) {
+        if (preg_match("#[<>\"'%;(){}&/\\ `]#i", $email)) {
             $_SESSION["register_error"] = "L'email non puo' contenere i seguenti caratteri: # [] <> \" ' % ; () & / \\ o spazi";
             redirect("register.php");
         }
 
-        if (preg_match("#[<>\"'%;(){}&./\\ ]#i", $username)) {
+        if (preg_match("#[<>\"'%;(){}&./\\ `]#i", $username)) {
             $_SESSION["register_error"] = "L'username non puo' contenere i seguenti caratteri: # [] <> \" ' % ; () & / . \\ o spazi";
             redirect("register.php");
         }
 
-        if (preg_match("#[<>\"'%;(){}&.\\/]#i", $name)) {
+        if (preg_match("#[<>\"'%;(){}&.\\/`]#i", $name)) {
             $_SESSION["register_error"] = "Il nome non puo' contenere i seguenti caratteri: # [] <> \" ' % ; () & / . \\";
             redirect("register.php");
         }
 
-        if (preg_match("#[<>\"'%;(){}&.\\/]#i", $surname)) {
+        if (preg_match("#[<>\"'%;(){}&.\\/`]#i", $surname)) {
             $_SESSION["register_error"] = "Il cognome non può contenere i seguenti caratteri: # [] <> \" ' % ; () & / . \\";
             redirect("register.php");
         }
