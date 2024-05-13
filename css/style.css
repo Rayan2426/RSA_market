@@ -1,3 +1,10 @@
+:root{
+    --black: #001933;
+    --white: floralwhite;
+    --red: red;
+    --yellow: yellow;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -6,12 +13,12 @@
 }
 
 body{
-    background-color: floralwhite;
+    background-color: var(--white);
     height: 100vh;
 }
 
 .errors{
-    color: red;
+    color: var(--red);
     font-size: 18px;
     text-align: center;
 }
@@ -20,7 +27,7 @@ header,
 footer{
     width: 100%;
     height: 150px;
-    background-color: #001933;
+    background-color: var(--black);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,12 +37,12 @@ header img{
     height: 100px;
     width: 100px;
     margin: 50px;
-    border: 2px solid floralwhite;
+    border: 2px solid var(--white);
     border-radius: 50px;
 }
 
 .div-header{
-    color: floralwhite; 
+    color: var(--white); 
 }
 
 .div-header h1{
@@ -47,7 +54,7 @@ header img{
     font-size: 40px;
     text-align: center;
     padding-top: 65px;
-    color: #001933;
+    color: var(--black);
 }
 
 form{
@@ -55,7 +62,7 @@ form{
     margin-right: auto;
     margin-top: 50px;
     background-color: #E0E0E0;
-    border: 2px solid #001933;
+    border: 2px solid var(--black);
     border-radius: 30px;
     width: 50%;
     display: flex;
@@ -70,7 +77,7 @@ form{
 
 .div-label p{
     font-size: 18px;
-    color: #001933;
+    color: var(--black);
 }
 
 .div-label input[type=text],
@@ -80,8 +87,8 @@ form{
     font-size: 20px;
     width: 400px;
     height: 40px;
-    background-color: floralwhite;
-    border: 2px solid #001933;
+    background-color: var(--white);
+    border: 2px solid var(--black);
     border-radius: 10px;
     padding-left: 10px;
 }
@@ -91,16 +98,16 @@ form button{
     width: 150px;
     height: 40px;
     font-size: 18px;
-    background-color: #001933;
-    color: floralwhite;
+    background-color: var(--black);
+    color: var(--white);
     border-radius: 10px;
     transition: 0.7s;
 }
 
 form button:hover{
     cursor: pointer;
-    border: 1px solid yellow;
-    color: yellow;
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
     transition: 0.7s;
 }
 
@@ -118,7 +125,7 @@ form button:hover{
 
 .div-links a{
     margin-left: 10px;
-    color: #001933;
+    color: var(--black);
     position: relative;
     text-decoration: none;
 }
@@ -130,7 +137,7 @@ form button:hover{
     width: 0;
     bottom: 0;
     left: 0;
-    background-color: #001933;
+    background-color: var(--black);
     transition: all 0.3s ease;
 }
 

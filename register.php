@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <title>RSA Market | Register</title>
+    <title>RSA Market | Registrazione</title>
 </head>
 
 <body>
@@ -72,7 +72,6 @@
                 <p class='errors'>{$_SESSION['register_error']}</p>";
             echo $emessage;
         ?>
-        <br>
     </div>
 
     <footer>
