@@ -5,7 +5,7 @@ function getConn()
     $user = "root";
     $pass = "";
     $server = "localhost";
-    $dbname = "rsa_market";
+    $dbname = "rsa";
 
     mysqli_report(MYSQLI_REPORT_OFF);
 
