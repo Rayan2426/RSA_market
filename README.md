@@ -1,1 +1,1 @@
-[SCHEMA ER](./sql/DigrmMercatino.png)
+(./sql/DigrmMercatino.png)
