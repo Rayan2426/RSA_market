@@ -18,3 +18,8 @@ function getConn()
 
     return $conn;
 }
+
+function isValid($var)
+{
+    return $var != null && isset($var) && !empty($var);
+}

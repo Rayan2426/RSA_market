@@ -5,11 +5,6 @@ function redirect($page)
     exit();
 }
 
-function isValid($var)
-{
-    return isset($var) && !empty($var) && $var != null;
-}
-
 function checkSessionCredentials(mysqli $conn)
 {
     $email = $_SESSION["email"];

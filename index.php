@@ -21,7 +21,7 @@
             <p> Tutto quello che vuoi, proponendo il prezzo! </p>
         </div>
         <?php
-            if(!isset($_SESSION["username"])){
+            if(!isset($_SESSION["email"])){
                 echo "<p> Effettua il Login: </p>";
                 echo "<button onclick='changePage('login.php')'> Vai al Login </button>";
             }
@@ -39,9 +39,3 @@
     </div>
 </body>
 </html>
-
-
-<?php
-echo "<p>{$_SESSION['username']}</p>
-<img src={$_SESSION['profileimg']} width=25 height=25>";
-?>
