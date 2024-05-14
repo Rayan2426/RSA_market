@@ -1,7 +1,6 @@
 <?php
     session_start();
     include_once("connectdb.php");
-    include_once("credentialscheck.php");
     $conn = getConn();
     checkSessionCredentials($conn);
 ?>
