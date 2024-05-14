@@ -2,7 +2,6 @@
     session_start();
     include_once("connectdb.php");
     $conn = getConn();
-    checkSessionCredentials($conn);
 ?>
 
 <!DOCTYPE html>
