@@ -173,9 +173,29 @@ form button:hover,
     transition: 0.4s all ease;
 }
 
+.user-block{
+    margin: 20px 0px 40px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-block p{
+    color: var(--white);
+    font-size: 18px;
+}
+
 .profile-img{
     width: 25px;
     height: 25px;
-    border: 1px solid var(--white);
+    border: 3px solid var(--white);
     border-radius: 50%;
+    transition: 0.4s all ease;
+}
+
+.profile-img:hover{
+    cursor: pointer;
+    border-color: var(--yellow);
+    transition: 0.4s all ease;
 }

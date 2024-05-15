@@ -9,6 +9,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>RSAMarket | Homepage</title>
@@ -25,9 +28,9 @@
                 echo "<button onclick=" . "changePage('" . "login.php" . "'" . ") class='login-button'> Vai al Login </button>";
             }
             else{
-                echo "<div>";
-                echo "<img src={$_SESSION['profileimg']} class='profile-img'>";
-                echo "<p> Ciao, {$_SESSION['username']} </p>";
+                echo "<div class='user-block'>";
+                echo "<img class='profile-img' onclick='showOptions()' src={$_SESSION['profileimg']}>";
+                echo "<p> {$_SESSION['username']} </p>";
                 echo "</div>";
             }
         ?>    
