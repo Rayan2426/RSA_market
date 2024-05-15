@@ -22,20 +22,25 @@
         </div>
         <?php
             if(!isset($_SESSION["email"])){
-                echo "<p> Effettua il Login: </p>";
-                echo "<button onclick='changePage('login.php')'> Vai al Login </button>";
+                echo "<button onclick=" . "changePage('" . "login.php" . "'" . ") class='login-button'> Vai al Login </button>";
             }
             else{
-                echo "<img src={$_SESSION['profileimg']} width=25 height=25>";
+                echo "<div>";
+                echo "<img src={$_SESSION['profileimg']} class='profile-img'>";
                 echo "<p> Ciao, {$_SESSION['username']} </p>";
+                echo "</div>";
             }
         ?>    
     </header>
 
-    <i class="bi bi-justify-left"></i>
+    <div class="viewer">
+        <i class="bi bi-justify-right"></i>
+    </div>
 
     <div class="navbar">  
         
     </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

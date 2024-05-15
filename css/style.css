@@ -2,7 +2,7 @@
     --black: #001933;
     --white: floralwhite;
     --red: red;
-    --yellow: yellow;
+    --yellow: rgb(177, 177, 12);
 }
 
 * {
@@ -26,7 +26,7 @@ body{
 header,
 footer{
     width: 100%;
-    height: 150px;
+    height: 170px;
     background-color: var(--black);
     display: flex;
     justify-content: space-between;
@@ -104,7 +104,20 @@ form button{
     transition: 0.7s;
 }
 
-form button:hover{
+.login-button{
+    margin: 50px;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--white);
+    transition: 0.7s;
+}
+
+form button:hover,
+.login-button:hover{
     cursor: pointer;
     border: 1px solid var(--yellow);
     color: var(--yellow);
@@ -143,4 +156,26 @@ form button:hover{
 
 .div-links a:hover::after{
     width: 100%;
+}
+
+/* Index.php classes */
+.viewer{
+    float: right;
+    margin-top: 30px;
+    margin-right: 40px;
+    font-size: 60px;
+    transition: 0.4s all ease;
+}
+
+.viewer:hover{
+    cursor: pointer;
+    color: var(--yellow);
+    transition: 0.4s all ease;
+}
+
+.profile-img{
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--white);
+    border-radius: 50%;
 }
