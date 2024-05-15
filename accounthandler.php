@@ -1,16 +1,14 @@
 <?php
 session_start();
+
+include_once("connectdb.php");
+
 $method = $_POST["method"];
 
 function redirect($page)
 {
     header("Location: ./$page");
     exit();
-}
-
-function isValid($var)
-{
-    return isset($var) && !empty($var);
 }
 
 if (!isValid($method)) {
@@ -51,7 +49,7 @@ switch ($method) {
             $_SESSION["cognome"] = $row["cognome"];
             $_SESSION["datanascita"] = $row["datanascita"];
             $_SESSION["password"] = $password;
-            $_SESSION["profileimg"] = isValid($row["fotoprofilo"]) ? $row["fotoprofilo"] : "http://pavlov5d2024.altervista.org/images/defaultprofileimage.png";
+            $_SESSION["profileimg"] = isValid($row["fotoprofilo"]) ? $row["fotoprofilo"] : null;
             $_SESSION["register_error"] = "";
             $_SESSION["login_error"] = "";
             $sql = "insert into UserLogs(User_email) value('{$row['email']}')";
@@ -138,6 +136,62 @@ switch ($method) {
         redirect("login.php");
         break;
     case 'changecreds':
+
+
+        $outcome = "";
+        
+        $newprofileimg = $_FILES['profileimg'];
+        //CHANGING PROFILE IMAGE IF A NEW IMAGE WAS UPLOADED
+        if (!($newprofileimg['error'] == 4 || ($newprofileimg['size'] == 0 && $newprofileimg['error'] == 0))) {
+            $filepath = $newprofileimg["tmp_name"];
+            $filename = $newprofileimg["name"];
+
+            //Check if the file is bigger than 5 megabytes
+            if ($newprofileimg['size'] > 5242880) {
+                $outcome .= "image uploaded cannot be bigger than 5 megabytes <br>";
+                redirect($indexpage);
+                ;
+            }
+
+            $target_dir = "uploads/profileimgs/";
+            $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+            //Profile images are stored as <username>.image_extension
+            $target_file = $target_dir . $_SESSION["username"] . "." . $imageFileType;
+
+            // Allow certain file formats
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
+                $outcome .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed. <br>";
+            }
+
+            if (empty($outcome) && move_uploaded_file($filepath, $target_file)) {
+
+                //User's old profile image url
+                $urlimg = $_SESSION["profileimg"];
+
+                // Check and deletes old user's profile image
+                if ($urlimg) {
+                    unlink($urlimg);
+                }
+
+                $sql = "update utente
+                        set urlimmagine = '$target_file'
+                        where username = '$username'";
+
+                $conn->query($sql);
+
+                if ($conn->affected_rows > 0)
+                    echo "profile image updated successfully";
+                else
+                    $outcome .= "couldn't update profile image";
+            } else {
+                $outcome .= "Sorry, there was an error uploading your file.";
+            }
+        }
+
+
         //GETTING ALL THE POST DATA
         $newemail = $_POST["email"];
         $newname = $_POST["nome"];
@@ -158,8 +212,6 @@ switch ($method) {
             $_SESSION["cred_change_status"] = "Campi non validi! Prova di nuovo.";
             redirect("account.php");
         }
-
-        $outcome = "";
 
 
         //IF THE USER WANTS TO CHANGE EMAIL

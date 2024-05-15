@@ -27,7 +27,7 @@ session_start();
 
     <div id="insert-form">
         <div>
-            <form action="process.php" method="post">
+            <form action="accounthandler.php" method="post">
                 <h3> Compila questo semplice form per cambiare password. </h3>
                 <?php
 
@@ -36,7 +36,8 @@ session_start();
                 $nome = $_SESSION["nome"];
                 $cognome = $_SESSION["cognome"];
 
-                $form = "<label for='email'>Email</label>
+                $form = "   <input type='file' name='profileimg'>
+                            <label for='email'>Email</label>
                             <input type='text' name='email' value='$email' id='email'>
                             <label for='username'>Username</label>
                             <input type='text' name='username' value='$username' id='username'>
