@@ -45,8 +45,6 @@
         
     </div>
 
-    <?php var_dump($_SESSION)?>
-
     <script src="js/script.js"></script>
 </body>
 </html>
