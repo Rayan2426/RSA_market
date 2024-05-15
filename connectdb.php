@@ -5,7 +5,7 @@ function getConn()
     $user = "root";
     $pass = "";
     $server = "localhost";
-    $dbname = "rsa";
+    $dbname = "rsa_market";
 
     mysqli_report(MYSQLI_REPORT_OFF);
 
@@ -21,5 +21,5 @@ function getConn()
 
 function isValid($var)
 {
-    return $var != null && isset($var) && !empty($var);
+    return $var && isset($var) && !empty($var);
 }

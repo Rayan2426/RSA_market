@@ -25,11 +25,11 @@
         </div>
         <?php
             if(!isset($_SESSION["email"])){
-                echo "<button onclick=" . "changePage('" . "login.php" . "'" . ") class='login-button'> Vai al Login </button>";
+                echo "<button onclick=changePage('login.php') class='login-button'> Vai al Login </button>";
             }
             else{
-                echo "<div class='user-block'>";
-                $profileimg = $_SESSION['profileimg'] ? $_SESSION['profileimg'] : "./images/defaultprofileimage.png";
+                echo "<div class='user-block' onclick=changePage('account.php')>";
+                $profileimg = $_SESSION['profileimg'] ? "./" . $_SESSION['profileimg'] : "./images/defaultprofileimage.png";
                 echo "<img class='profile-img' onclick='showOptions()' src=$profileimg>";
                 echo "<p> {$_SESSION['username']} </p>";
                 echo "</div>";
@@ -44,6 +44,8 @@
     <div class="navbar">  
         
     </div>
+
+    <?php var_dump($_SESSION)?>
 
     <script src="js/script.js"></script>
 </body>

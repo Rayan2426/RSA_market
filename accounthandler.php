@@ -24,14 +24,14 @@ switch ($method) {
     case 'login':
         $userinfo = $_POST["userinfo"];
         $password = $_POST["password"];
-        $errormessage = "L'email o la password sono invalide! Prova di nuovo.";
+        $errormessage = "L'email o la password sono errate! Prova di nuovo.";
         
         if (!isValid($userinfo) || !isValid($password)) {
             $_SESSION["login_error"] = $errormessage;
             redirect("login.php");
         }
         
-        $sql = "select email,username,nome,cognome,datanascita,password from Users where username = '$userinfo' or email = '$userinfo'";
+        $sql = "select email,username,nome,cognome,datanascita,password,fotoprofilo from Users where username = '$userinfo' or email = '$userinfo'";
         $result = $conn->query($sql);
         
         if (mysqli_affected_rows($conn) < 0) {
@@ -149,14 +149,13 @@ switch ($method) {
 
         $outcome = "";
         
-        $newprofileimg = $_FILES['profileimg'];
         //CHANGING PROFILE IMAGE IF A NEW IMAGE WAS UPLOADED
-        if (!($newprofileimg['error'] == 4 || ($newprofileimg['size'] == 0 && $newprofileimg['error'] == 0))) {
-            $filepath = $newprofileimg["tmp_name"];
-            $filename = $newprofileimg["name"];
+        if (!($_FILES['profileimg']['error'] == 4 || ($_FILES['profileimg']['size'] == 0 && $_FILES['profileimg']['error'] == 0))) {
+            $filepath = $_FILES['profileimg']["tmp_name"];
+            $filename = $_FILES['profileimg']["name"];
 
             //Check if the file is bigger than 5 megabytes
-            if ($newprofileimg['size'] > 5242880) {
+            if ($_FILES['profileimg']['size'] > 5242880) {
                 $outcome .= "image uploaded cannot be bigger than 5 megabytes <br>";
                 redirect($indexpage);
                 ;
@@ -164,6 +163,7 @@ switch ($method) {
 
             $target_dir = "uploads/profileimgs/";
             $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
             //Profile images are stored as <username>.image_extension
             $target_file = $target_dir . $_SESSION["username"] . "." . $imageFileType;
 
@@ -174,27 +174,23 @@ switch ($method) {
             ) {
                 $outcome .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed. <br>";
             }
-
+            //User's old profile image url
+            $urlimg = $_SESSION["profileimg"];
+            // Check and deletes old user's profile image
+            if ($urlimg) {
+                unlink($urlimg);
+            }
             if (empty($outcome) && move_uploaded_file($filepath, $target_file)) {
 
-                //User's old profile image url
-                $urlimg = $_SESSION["profileimg"];
 
-                // Check and deletes old user's profile image
-                if ($urlimg) {
-                    unlink($urlimg);
-                }
-
-                $sql = "update utente
-                        set urlimmagine = '$target_file'
-                        where username = '$username'";
+                $sql = "update Users
+                        set fotoProfilo = '$target_file'
+                        where username = '{$_SESSION['username']}'";
 
                 $conn->query($sql);
 
-                if ($conn->affected_rows > 0)
-                    echo "profile image updated successfully";
-                else
-                    $outcome .= "couldn't update profile image";
+                $_SESSION["profileimg"] = $target_file;
+                $outcome .= "profile image updated successfully";
             } else {
                 $outcome .= "Sorry, there was an error uploading your file.";
             }

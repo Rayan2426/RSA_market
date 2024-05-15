@@ -21,13 +21,12 @@ session_start();
         include_once("./credentialscheck.php");
         $conn = getConn();
         checkSessionCredentials($conn);
-        include("./navbar.php");
     ?>
     </div>
 
     <div id="insert-form">
         <div>
-            <form action="accounthandler.php" method="post">
+            <form action="accounthandler.php" method="post" enctype="multipart/form-data">
                 <h3> Compila questo semplice form per cambiare password. </h3>
                 <?php
 
