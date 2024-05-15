@@ -56,6 +56,11 @@
                     <p> Inserisci una Password: *</p>
                     <input type="password" name="password" id="password" required>
                 </div>
+
+                <div class="div-label">
+                    <p> Reinserisci di nuovo la Password: *</p>
+                    <input type="password" name="confirmpassword" id="confirmpassword" required>
+                </div>
             
                 <input style="display: none;" type="text" name="method" value="register">
                 <button type="submit">Registrati</button>

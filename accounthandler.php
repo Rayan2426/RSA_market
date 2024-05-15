@@ -70,12 +70,14 @@ switch ($method) {
         $datanascita = $_POST["datanascita"];
         $username = $_POST["username"];
         $password = $_POST["password"];
+        $cpassword = $_POST["confirmpassword"];
 
         if (!isValid($email) ||
             !isValid($name) ||
             !isValid($surname) ||
             !isValid($username) ||
             !isValid($password) ||
+            !isValid($cpassword) ||
             !isValid($datanascita)) {
             $_SESSION["register_error"] = "Campi invalidi! Tenta di nuovo";
             redirect("register.php");
@@ -116,19 +118,26 @@ switch ($method) {
         $datanascita = $datanascita[0] . "-" . $datanascita[1] . "-" . $datanascita[2];
 
         $password = hash('sha256', $password);
-        $sql = "insert into Users (email,nome,cognome,username,datanascita,password)
+        $cpassword = hash('sha256', $cpassword);
+        if($password === $cpassword){
+            $sql = "insert into Users (email,nome,cognome,username,datanascita,password)
             value ('$email','$name','$surname','$username','$datanascita','$password')";
 
-        $conn->query($sql);
+            $conn->query($sql);
 
-        if (mysqli_affected_rows($conn) > 0) {
-            $_SESSION["register_error"] = "";
-            $_SESSION["login_error"] = "";
-            redirect("login.php");
-        } else {
-            $_SESSION["register_error"] = "Esiste gia' un account con queste credenziali! " . $conn->error;
+            if (mysqli_affected_rows($conn) > 0) {
+                $_SESSION["register_error"] = "";
+                $_SESSION["login_error"] = "";
+                redirect("login.php");
+            } else {
+                $_SESSION["register_error"] = "Esiste gia' un account con queste credenziali! ";
+                redirect("register.php");
+            }
+        } else{
+            $_SESSION["register_error"] = "Le due password non coincidono!";
             redirect("register.php");
         }
+        
         break;
     case 'logout':
         session_unset();
