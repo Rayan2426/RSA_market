@@ -26,7 +26,7 @@ body{
 header,
 footer{
     width: 100%;
-    height: 170px;
+    height: 190px;
     background-color: var(--black);
     display: flex;
     justify-content: space-between;
@@ -93,6 +93,19 @@ form{
     padding-left: 10px;
 }
 
+input[type=file]{
+    padding-top: 10px;
+    padding-left: 15%;
+    margin-top: 20px;
+    width: 400px;
+    height: 40px;
+    font-size: 18px;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 10px;
+    transition: 0.4s all ease;
+}   
+
 form button{
     margin-bottom: 30px;
     width: 150px;
@@ -101,7 +114,7 @@ form button{
     background-color: var(--black);
     color: var(--white);
     border-radius: 10px;
-    transition: 0.7s;
+    transition: 0.4s all ease;
 }
 
 .login-button{
@@ -113,15 +126,16 @@ form button{
     color: var(--white);
     border-radius: 10px;
     border: 1px solid var(--white);
-    transition: 0.7s;
+    transition: 0.4s all ease;
 }
 
 form button:hover,
-.login-button:hover{
+.login-button:hover,
+input[type=file]:hover{
     cursor: pointer;
     border: 1px solid var(--yellow);
     color: var(--yellow);
-    transition: 0.7s;
+    transition: 0.4s all ease;
 }
 
 .div-links{
@@ -159,22 +173,11 @@ form button:hover,
 }
 
 /* Index.php classes */
-.viewer{
-    float: right;
-    margin-top: 30px;
-    margin-right: 40px;
-    font-size: 60px;
-    transition: 0.4s all ease;
-}
-
-.viewer:hover{
-    cursor: pointer;
-    color: var(--yellow);
-    transition: 0.4s all ease;
-}
 
 .user-block{
-    margin: 20px 0px 40px 50px;
+    margin-right: 50px;
+    width: 100px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -187,8 +190,9 @@ form button:hover,
 }
 
 .profile-img{
-    width: 25px;
-    height: 25px;
+    margin: 20px;
+    width: 100px;
+    height: 100px;
     border: 3px solid var(--white);
     border-radius: 50%;
     transition: 0.4s all ease;
@@ -197,5 +201,19 @@ form button:hover,
 .profile-img:hover{
     cursor: pointer;
     border-color: var(--yellow);
+    transition: 0.4s all ease;
+}
+
+.viewer{
+    float: right;
+    margin-top: 30px;
+    margin-right: 40px;
+    font-size: 60px;
+    transition: 0.4s all ease;
+}
+
+.viewer:hover{
+    cursor: pointer;
+    color: var(--yellow);
     transition: 0.4s all ease;
 }

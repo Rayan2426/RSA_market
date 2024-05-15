@@ -53,7 +53,7 @@ unset($_SESSION["email"]);
     <div class="div-links">
         <a href="register.php"> Non hai un account? </a>
         |
-        <a href="#"> Non ricordi la password? </a>
+        <a href="account.php"> Non ricordi la password? </a>
     </div>
 
     <footer>
