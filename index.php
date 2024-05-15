@@ -29,7 +29,8 @@
             }
             else{
                 echo "<div class='user-block'>";
-                echo "<img class='profile-img' onclick='showOptions()' src={$_SESSION['profileimg']}>";
+                $profileimg = $_SESSION['profileimg'] ? $_SESSION['profileimg'] : "./images/defaultprofileimage.png";
+                echo "<img class='profile-img' onclick='showOptions()' src=$profileimg>";
                 echo "<p> {$_SESSION['username']} </p>";
                 echo "</div>";
             }
