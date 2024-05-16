@@ -25,18 +25,18 @@ session_start();
     ?>
 
     <header>
-        <img src="images/logo.jpg">
+        <img src="images/logo.jpg" onclick="changePage('index.php')">
         <div class="div-header">
             <h1> RSA Market </h1>
             <p> Tutto quello che vuoi, proponendo il prezzo! </p>
         </div>
-        <img src="images/logo.jpg">    
+        <img src="images/logo.jpg" onclick="changePage('index.php')">    
     </header>
 
     <div id="insert-form">
         <div>
             <h3 class="h3-title"> Compila questo semplice form per cambiare password </h3>
-            <form action="accounthandler.php" method="post" enctype="multipart/form-data">
+            <form action="accounthandler.php" method="post" enctype="multipart/form-data" class="form">
                 <?php
 
                 $email = $_SESSION["email"];

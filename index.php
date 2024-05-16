@@ -18,7 +18,7 @@
 </head>
 <body>
     <header>
-        <img src="images/logo.jpg">
+        <img src="images/logo.jpg" onclick="changePage('index.php')">
         <div class="div-header">
             <h1> RSA Market </h1>
             <p> Tutto quello che vuoi, proponendo il prezzo! </p>
@@ -37,12 +37,23 @@
         ?>    
     </header>
 
-    <div class="viewer">
-        <i class="bi bi-justify-right"></i>
+    <div class="viewer" id="viewer">
+        <i class="bi bi-justify-right element-viewer" onclick="show()" id="element-viewer"></i>
     </div>
 
-    <div class="navbar">  
-        
+    <div class="div-filter" id="filter-box" style="display: none;">
+        <i class="bi bi-justify-left element-viewer" onclick="show()" id="element-viewer"></i>  
+        <h1>Applica un filtro su:</h1>
+        <form action="index.php" method="post">
+            <div class="div-label">
+                <p> Categoria </p>
+                <input type="text" name="category">
+            </div>
+            <div class="div-label">
+                <p> Nome </p>
+                <input type="text" name="name">
+            </div>
+        </form>
     </div>
 
     <script src="js/script.js"></script>

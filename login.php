@@ -18,18 +18,18 @@ unset($_SESSION["email"]);
 
 <body>
     <header>
-        <img src="images/logo.jpg">
+        <img src="images/logo.jpg" onclick="changePage('index.php')">
         <div class="div-header">
             <h1> RSA Market </h1>
             <p> Tutto quello che vuoi, proponendo il prezzo! </p>
         </div>
-        <img src="images/logo.jpg">    
+        <img src="images/logo.jpg" onclick="changePage('index.php')">    
     </header>
 
     <div id="login-form">
         <h3 class="h3-title"> Per accedere a tutti i tuoi privilegi effettua il Login. </h3>
         
-        <form action="accounthandler.php" method="post">
+        <form action="accounthandler.php" method="post" class="form">
             <div class="div-label">
                 <p> E-mail/Username </p>
                 <input type="text" name="userinfo" id="userid" placeholder="example@domain.com">

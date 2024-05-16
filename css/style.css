@@ -57,7 +57,7 @@ header img{
     color: var(--black);
 }
 
-form{
+.form{
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -106,7 +106,7 @@ input[type=file]{
     transition: 0.4s all ease;
 }   
 
-form button{
+.form button{
     margin-bottom: 30px;
     width: 150px;
     height: 40px;
@@ -129,7 +129,7 @@ form button{
     transition: 0.4s all ease;
 }
 
-form button:hover,
+.form button:hover,
 .login-button:hover,
 input[type=file]:hover{
     cursor: pointer;
@@ -206,14 +206,33 @@ input[type=file]:hover{
 
 .viewer{
     float: right;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-right: 40px;
     font-size: 60px;
     transition: 0.4s all ease;
 }
 
-.viewer:hover{
+.div-filter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    width: 30%;
+    border: 3px solid black;
+    background-color: #E0E0E0;
+}
+
+.element-viewer{
+    font-size: 50px;
+}
+
+.element-viewer:hover{
     cursor: pointer;
     color: var(--yellow);
     transition: 0.4s all ease;
+}
+
+.div-filter h1{
+    text-align: center;
+    font-size: 24px;
 }

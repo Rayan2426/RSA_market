@@ -14,19 +14,19 @@
 
 <body>
     <header>
-        <img src="images/logo.jpg">
+        <img src="images/logo.jpg" onclick="changePage('index.php')">
         <div class="div-header">
             <h1> RSA Market </h1>
             <p> Tutto quello che vuoi, proponendo il prezzo! </p>
         </div>
-        <img src="images/logo.jpg">    
+        <img src="images/logo.jpg" onclick="changePage('index.php')">    
     </header>
 
     <div id="register-form">
         <h3 class="h3-title"> Effettua la registrazione a RSA Market compilando questo semplice form. </h3>
         <p style="padding-top: 20px; text-align: center;"> I campi contrassegnati da * sono obbligatori. </p>
         <div>
-            <form action="accounthandler.php" method="post">
+            <form action="accounthandler.php" method="post" class="form">
                 <div class="div-label">
                     <p> Inserisci un'E-mail: *</p>
                     <input type="email" name="email" id="email" placeholder="example@gmail.com" required> 
