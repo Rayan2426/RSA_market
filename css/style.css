@@ -41,6 +41,10 @@ header img{
     border-radius: 50px;
 }
 
+header img:hover{
+    cursor: pointer;
+}
+
 .div-header{
     color: var(--white); 
 }

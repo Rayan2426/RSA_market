@@ -46,8 +46,9 @@
         <h1>Applica un filtro su:</h1>
         <form action="index.php" method="post">
             <div class="div-label">
-                <p> Categoria </p>
-                <input type="text" name="category">
+                <select name="category">
+                    <option value=""></option>
+                </select>
             </div>
             <div class="div-label">
                 <p> Nome </p>
