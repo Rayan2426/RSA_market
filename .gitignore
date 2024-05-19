@@ -1,3 +1,7 @@
-uploads/profileimgs/*.png
-uploads/profileimgs/*.jpg
-uploads/profileimgs/*.jpeg
+uploads/*/*.png
+uploads/*/*.jpg
+uploads/*/*.jpeg
+uploads/*/*/*.png
+uploads/*/*/*.jpg
+uploads/*/*/*.jpeg
+uploads/*/*
