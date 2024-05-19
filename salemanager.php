@@ -31,7 +31,7 @@ switch ($method) {
             redirect($redpage);
         }
 
-        $sql = "insert into annunci(nome,descrizione,tipologia,stato,user_email)
+        $sql = "insert into Annunci(nome,descrizione,tipologia,stato,user_email)
                 value('$title','$desc','$category','available','{$_SESSION['email']}')";
 
         $conn->query($sql);
@@ -78,7 +78,7 @@ switch ($method) {
                 //if there wasnt any previous error and file is successfully saved
                 if (empty($outcome) && move_uploaded_file($filepath, $target_file)) {
 
-                    $sql = "insert into foto(urlImg,Annuncio_ID)
+                    $sql = "insert into Foto(urlImg,Annuncio_ID)
                             value('$target_file','$saleid')";
 
                     $conn->query($sql);
