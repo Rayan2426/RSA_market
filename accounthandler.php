@@ -49,7 +49,7 @@ switch ($method) {
             $_SESSION["cognome"] = $row["cognome"];
             $_SESSION["datanascita"] = $row["datanascita"];
             $_SESSION["password"] = $password;
-            $_SESSION["profileimg"] = isValid($row["fotoprofilo"]) ? $row["fotoprofilo"] : "./images/defaultprofileimage.png";
+            $_SESSION["profileimg"] = isValid($row["fotoprofilo"]) ? $row["fotoprofilo"] : null;
             $_SESSION["register_error"] = "";
             $_SESSION["login_error"] = "";
             $sql = "insert into UserLogs(User_email) value('{$row['email']}')";
@@ -146,9 +146,7 @@ switch ($method) {
         break;
     case 'changecreds':
 
-
-        $outcome = "";
-        
+        $redpage = "account.php";
         //CHANGING PROFILE IMAGE IF A NEW IMAGE WAS UPLOADED
         if (!($_FILES['profileimg']['error'] == 4 || ($_FILES['profileimg']['size'] == 0 && $_FILES['profileimg']['error'] == 0))) {
             $filepath = $_FILES['profileimg']["tmp_name"];
@@ -156,9 +154,8 @@ switch ($method) {
 
             //Check if the file is bigger than 5 megabytes
             if ($_FILES['profileimg']['size'] > 5242880) {
-                $outcome .= "image uploaded cannot be bigger than 5 megabytes <br>";
-                redirect($indexpage);
-                ;
+                $_SESSION["cred_change_status"] = "image uploaded cannot be bigger than 5 megabytes <br>";
+                redirect($redpage);
             }
 
             $target_dir = "uploads/profileimgs/";
@@ -172,17 +169,19 @@ switch ($method) {
                 $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif"
             ) {
-                $outcome .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed. <br>";
+                $_SESSION["cred_change_status"] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed. <br>";
+                redirect($redpage);
             }
             //User's old profile image url
             $urlimg = $_SESSION["profileimg"];
+
             // Check and deletes old user's profile image
             if ($urlimg) {
                 unlink($urlimg);
             }
-            if (empty($outcome) && move_uploaded_file($filepath, $target_file)) {
-
-
+            
+            if (move_uploaded_file($filepath, $target_file)) {
+                
                 $sql = "update Users
                         set fotoProfilo = '$target_file'
                         where username = '{$_SESSION['username']}'";
@@ -190,9 +189,9 @@ switch ($method) {
                 $conn->query($sql);
 
                 $_SESSION["profileimg"] = $target_file;
-                $outcome .= "profile image updated successfully";
+                $_SESSION["cred_change_status"] = "profile image updated successfully";
             } else {
-                $outcome .= "Sorry, there was an error uploading your file.";
+                $_SESSION["cred_change_status"] = "Sorry, there was an error uploading your file.";
             }
         }
 
