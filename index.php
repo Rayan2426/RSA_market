@@ -85,7 +85,7 @@
                     </div>";
             }
         } else{
-            echo "non sono ancora presenti annunci nel database";
+            echo "nessun annuncio trovato che rispetti i criteri di ricerca<br>{$conn->error}";
         }
     ?>
     <div class="viewer" id="viewer">

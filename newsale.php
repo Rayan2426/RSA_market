@@ -49,7 +49,7 @@ checkSessionCredentials($conn);
         </div>
         
         <?php
-            $sql = "select nome from tipologie order by nome";
+            $sql = "select nome from Tipologie order by nome";
             $result = $conn->query($sql);
             if($result->num_rows > 0){
                 $select = "<select name='tipologia'>";
@@ -58,15 +58,18 @@ checkSessionCredentials($conn);
                     $select .= "<option value='$name'>$name</option>";
                 }
                 $select .= "</select>";
-                echo $select;
+                echo "<div class='div-label'>
+                        <p>Categoria</p>
+                        $select
+                        </div>";
             }
         ?>
-        <img src="#" id="first_image">
-        <input type="file" name="foto1" id="image1">
-        <img src="#" id="second_image">
-        <input type="file" name="foto2" id="image2" style="display: none;">
-        <img src="#" id="third_image">
-        <input type="file" name="foto3" id="image3" style="display: none;">
+        <img src="#" id="first_image" style="display: none;">
+        <input type="file" name="foto1" id="foto1">
+        <img src="#" id="second_image" style="display: none;">
+        <input type="file" name="foto2" id="foto2" style="display: none;">
+        <img src="#" id="third_image" style="display: none;">
+        <input type="file" name="foto3" id="foto3" style="display: none;">
 
         <input type="hidden" name="method" value="create">
         <button type="submit">invia</button>
@@ -79,10 +82,46 @@ checkSessionCredentials($conn);
     ?>
 
     <script>
-        const images = [
-            document.getElementById("image1"),
-            document.getElementById("image2"),
-            document.getElementById("image3")
+
+            let fotoinput1 = document.getElementById("foto1");
+            let fotoinput2 = document.getElementById("foto2");
+            let fotoinput3 = document.getElementById("foto3");
+
+            fotoinput1.onchange = evt => {
+                const [file] = fotoinput1.files;
+                if (file) {
+                    let image = document.getElementById("first_image");
+                    image.style.display = "block";
+                    image.src = URL.createObjectURL(file);
+                    fotoinput1.style.display = "none";
+                    fotoinput2.style.display = "block";
+                }
+            }
+
+            fotoinput2.onchange = evt => {
+                const [file] = fotoinput2.files;
+                if (file) {
+                    let image = document.getElementById("second");
+                    image.style.display = "block";
+                    image.src = URL.createObjectURL(file);
+                    fotoinput2.style.display = "none";
+                    fotoinput3.style.display = "block";
+                }
+            }
+
+            fotoinput3.onchange = evt => {
+                const [file] = fotoinput3.files;
+                if (file) {
+                    let image = document.getElementById("third_image");
+                    image.style.display = "block";
+                    image.src = URL.createObjectURL(file);
+                    fotoinput3.style.display = "none";
+                }
+            }
+        /*const images = [
+            document.getElementById("foto1"),
+            document.getElementById("foto2"),
+            document.getElementById("foto3")
         ];
         
         let image;
@@ -141,7 +180,7 @@ checkSessionCredentials($conn);
                     break;
             }
         }
-        
+        */
     </script>
 </body>
 </html>
