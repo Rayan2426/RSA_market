@@ -94,7 +94,7 @@
             $conditionated = true;
         }
         
-        $results = $conn->query($sql);
+        $results = $conn->query($sql . " ORDER BY Annunci.data DESC");
         
         if($results->num_rows > 0){
             while (($row = $results->fetch_assoc()) != null) {
