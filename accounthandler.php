@@ -154,7 +154,7 @@ switch ($method) {
 
             //Check if the file is bigger than 5 megabytes
             if ($_FILES['profileimg']['size'] > 5242880) {
-                $_SESSION["cred_change_status"] = "image uploaded cannot be bigger than 5 megabytes <br>";
+                $_SESSION["cred_change_status"] = "Il file inserito non può essere più grande di 5MB <br>";
                 redirect($redpage);
             }
 
@@ -169,7 +169,7 @@ switch ($method) {
                 $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                 && $imageFileType != "gif"
             ) {
-                $_SESSION["cred_change_status"] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed. <br>";
+                $_SESSION["cred_change_status"] = "Spiacente, solo le estensioni JPG, JPEG, PNG & GIF sono ammesse. <br>";
                 redirect($redpage);
             }
             //User's old profile image url
@@ -189,9 +189,9 @@ switch ($method) {
                 $conn->query($sql);
 
                 $_SESSION["profileimg"] = $target_file;
-                $_SESSION["cred_change_status"] = "profile image updated successfully";
+                $_SESSION["cred_change_status"] = "Immagine profilo aggiornata con successo";
             } else {
-                $_SESSION["cred_change_status"] = "Sorry, there was an error uploading your file.";
+                $_SESSION["cred_change_status"] = "Spiacente, c'è stato un errore durante l'aggiornamento della foto profilo";
             }
         }
 

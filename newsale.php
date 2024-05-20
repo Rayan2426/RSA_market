@@ -101,7 +101,7 @@ checkSessionCredentials($conn);
             fotoinput2.onchange = evt => {
                 const [file] = fotoinput2.files;
                 if (file) {
-                    let image = document.getElementById("second");
+                    let image = document.getElementById("second_image");
                     image.style.display = "block";
                     image.src = URL.createObjectURL(file);
                     fotoinput2.style.display = "none";
@@ -182,5 +182,6 @@ checkSessionCredentials($conn);
         }
         */
     </script>
+    <script src="./js/script.js"></script>
 </body>
 </html>

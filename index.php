@@ -36,36 +36,77 @@
             }
         ?>    
     </header>
-    <?php
-        $sql = "select ID,nome,descrizione,user_email,stato,tipologia,data
-                from Annunci";
+    <button onclick="changePage('newsale.php')">Inserisci nuovo annuncio</button>
+    <div class="viewer" id="viewer">
+        <i class="bi bi-justify-right element-viewer" onclick="show()" id="element-viewer"></i>
+    </div>
 
-        if(array_key_exists("q",$_GET) && isset($_GET["q"])){
-            $q = $_GET["q"];
-            $args = explode(" ",$q);
-            $sql .= " WHERE ";
-            foreach($args as $arg){
-                $sql .= "nome LIKE '%$arg%'
-                        OR descrizione LIKE '%$arg%'
-                        OR user_email LIKE '%$arg%' OR ";
+    <div class="div-filter" id="filter-box" style="display: none;">
+        <i class="bi bi-justify-left element-viewer" onclick="show()" id="element-viewer"></i>  
+        <h1>Applica un filtro su:</h1>
+        <form action="index.php" method="get">
+            <div class="div-label">
+            <?php
+            $sql = "select nome from Tipologie order by nome";
+            $result = $conn->query($sql);
+            if($result->num_rows > 0){
+                $select = "<select name='category'>";
+                while(($row = $result->fetch_assoc()) != null){
+                    $name = $row["nome"];
+                    $select .= "<option value='$name'>$name</option>";
+                }
+                $select .= "</select>";
+                echo $select;
             }
-            $sql = substr($sql, 0, -4);
-            echo $sql;
+        ?>
+            </div>
+            <div class="div-label">
+                <p> Nome </p>
+                <input type="text" name="q">
+            </div>
+            <button style="font-size: 40px;" type="submit">Vai</button>
+        </form>
+    </div>
+    <?php
+        $sql = "SELECT Annunci.ID,Annunci.nome,Annunci.descrizione,Users.username,Users.fotoProfilo,Annunci.stato,Annunci.tipologia,Annunci.data
+                FROM Annunci
+                JOIN Users ON Users.email = Annunci.user_email";
+        $conditionated = false;
+
+        if(array_key_exists("q",$_GET) && isValid($_GET["q"])){
+            $q = urlencode($_GET["q"]);
+            $args = explode("%20",$q);
+            $sql .= " WHERE /";
+            foreach($args as $arg){
+                $sql .= "Annunci.nome LIKE '%$arg%'
+                        OR Annunci.descrizione LIKE '%$arg%'
+                        OR Users.username LIKE '%$arg%' OR ";
+            }
+            $sql = substr($sql, 0, -3) . ")";
+            $conditionated = true;
+        }
+
+        if(array_key_exists("category",$_GET) && isValid($_GET["category"])){
+            $category = urlencode($_GET["category"]);
+            $sql .= $conditionated ? " AND " : " WHERE ";
+            $sql .= " Annunci.tipologia = '$category'";
+            $conditionated = true;
         }
         
         $results = $conn->query($sql);
-
+        
         if($results->num_rows > 0){
             while (($row = $results->fetch_assoc()) != null) {
                 $idann = $row["ID"];
                 $title = urldecode($row["nome"]);
                 $desc = urldecode($row["descrizione"]);
                 $state = $row["stato"];
-                $author = $row["user_email"];
+                $author = $row["username"];
+                $authorpfp = isset($row["fotoProfilo"]) ? $row["fotoProfilo"] : "./images/defaultprofileimage.png";
                 $category = $row["tipologia"];
                 $date = $row["data"];
 
-                $sql = "select urlImg from Foto
+                $sql = "SELECT urlImg from Foto
                         WHERE
                         Annuncio_ID = '$idann'
                         ORDER BY urlImg
@@ -78,35 +119,18 @@
                     Nome: $title <br>
                     Descrizione: $desc <br>
                     Stato: $state <br>
-                    Autore: $author <br>
+                    <div>
+                    <img src='$authorpfp' style=\"height:30px; width=30px; border-radius: 15px\"> Autore: $author<br>
+                    </div>
                     Categoria: $category <br>
                     Data di pubblicazione: $date <br>
-                    <img src='$imageann'> <br>
+                    <img src='$imageann' width=300px> <br>
                     </div>";
             }
         } else{
             echo "nessun annuncio trovato che rispetti i criteri di ricerca<br>{$conn->error}";
         }
     ?>
-    <div class="viewer" id="viewer">
-        <i class="bi bi-justify-right element-viewer" onclick="show()" id="element-viewer"></i>
-    </div>
-
-    <div class="div-filter" id="filter-box" style="display: none;">
-        <i class="bi bi-justify-left element-viewer" onclick="show()" id="element-viewer"></i>  
-        <h1>Applica un filtro su:</h1>
-        <form action="index.php" method="get">
-            <div class="div-label">
-                <select name="category">
-                    <option value=""></option>
-                </select>
-            </div>
-            <div class="div-label">
-                <p> Nome </p>
-                <input type="text" name="q">
-            </div>
-        </form>
-    </div>
 
     <script src="js/script.js"></script>
 </body>

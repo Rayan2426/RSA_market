@@ -54,7 +54,7 @@ switch ($method) {
 
                 //Check if the file is bigger than 5 megabytes
                 if ($img['size'] > 5242880) {
-                    $outcome .= "image uploaded cannot be bigger than 5 megabytes <br>";
+                    $outcome .= "Il file inserito non può essere più grande di 5MB <br>";
                     redirect($redpage);
                 }
 
@@ -64,7 +64,7 @@ switch ($method) {
 
                 // Allow certain file formats
                 if ( $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-                    $outcome .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed. <br>";
+                    $outcome .= "Spiacente, solo le estensioni JPG, JPEG, PNG & GIF sono ammesse. <br>";
                 }
 
                 $imgcount++;
@@ -85,7 +85,7 @@ switch ($method) {
 
                 } else {
                     $imgcount--;
-                    $outcome .= "Sorry, there was an error uploading your file.";
+                    $outcome .= "Spiacente, c'è stato un errore durante l'inserimento di una foto dell'annuncio";
                 }
             }
         }
