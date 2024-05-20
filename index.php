@@ -50,7 +50,8 @@
             $sql = "select nome from Tipologie order by nome";
             $result = $conn->query($sql);
             if($result->num_rows > 0){
-                $select = "<select name='category'>";
+                $select = "<select name='category'>
+                            <option value='any'>any</option>";
                 while(($row = $result->fetch_assoc()) != null){
                     $name = $row["nome"];
                     $select .= "<option value='$name'>$name</option>";
@@ -76,7 +77,7 @@
         if(array_key_exists("q",$_GET) && isValid($_GET["q"])){
             $q = urlencode($_GET["q"]);
             $args = explode("%20",$q);
-            $sql .= " WHERE /";
+            $sql .= " WHERE (";
             foreach($args as $arg){
                 $sql .= "Annunci.nome LIKE '%$arg%'
                         OR Annunci.descrizione LIKE '%$arg%'
@@ -86,7 +87,7 @@
             $conditionated = true;
         }
 
-        if(array_key_exists("category",$_GET) && isValid($_GET["category"])){
+        if(array_key_exists("category",$_GET) && isValid($_GET["category"]) && $_GET["category"] !== "any"){
             $category = urlencode($_GET["category"]);
             $sql .= $conditionated ? " AND " : " WHERE ";
             $sql .= " Annunci.tipologia = '$category'";
