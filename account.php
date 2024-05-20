@@ -43,9 +43,9 @@ session_start();
                 $username = $_SESSION["username"];
                 $nome = $_SESSION["nome"];
                 $cognome = $_SESSION["cognome"];
-
+                $profileimg = isset($_SESSION["profileimg"]) ? $_SESSION["profileimg"] : "./images/defaultprofileimage.png";
                 $form = "   
-                    <img id='image' src='{$_SESSION['profileimg']}' class='file-image' onclick='document.getElementById(\"imgInp\").click()'>
+                    <img id='image' src='$profileimg' class='file-image' onclick='document.getElementById(\"imgInp\").click()'>
                     <input type='file' name='profileimg' id='imgInp' accept='images/*' style='display: none;'>
                     <p style='color: var(--black)'> Cambia immagine profilo </p>
                     <div class='div-label'>

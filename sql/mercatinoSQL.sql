@@ -14,7 +14,8 @@ CREATE TABLE `Annunci` (
   `descrizione` varchar(255) DEFAULT NULL,
   `user_email` varchar(128) NOT NULL,
   `stato` varchar(30) NOT NULL,
-  `tipologia` varchar(30) NOT NULL
+  `tipologia` varchar(30) NOT NULL,
+  `data` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `Foto` (
