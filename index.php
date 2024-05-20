@@ -29,7 +29,7 @@
             }
             else{
                 echo "<div class='user-block' onclick=changePage('account.php')>";
-                $profileimg = $_SESSION['profileimg'] ? "./" . $_SESSION['profileimg'] : "./images/defaultprofileimage.png";
+                $profileimg = $_SESSION['profileimg'] ? $_SESSION['profileimg'] : "./images/defaultprofileimage.png";
                 echo "<img class='profile-img' onclick='showOptions()' src=$profileimg>";
                 echo "<p> {$_SESSION['username']} </p>";
                 echo "</div>";

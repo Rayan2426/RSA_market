@@ -10,3 +10,4 @@ function show() {
     viewer.style.display = "none";
     filterBox.style.display = "block";
 }
+

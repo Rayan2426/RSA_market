@@ -111,6 +111,14 @@ input[type=file] {
     transition: 0.4s all ease;
 }
 
+select {
+    width: 400px;
+    height: 40px;
+    font-size: 18px;
+    border: 2px solid var(--black);
+    border-radius: 10px;
+}
+
 .form button {
     margin-bottom: 30px;
     width: 150px;
@@ -239,6 +247,7 @@ input[type=file]:hover {
 
 .element-viewer {
     font-size: 50px;
+    transition: 0.4s all ease;
 }
 
 .element-viewer:hover {
