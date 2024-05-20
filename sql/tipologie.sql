@@ -6,4 +6,5 @@ INSERT INTO `Tipologie` (`nome`, `descrizione`) VALUES
 ('electronics', NULL),
 ('music', NULL),
 ('science', NULL),
-('toys', NULL);
+('toys', NULL),
+('videogames', NULL);

@@ -49,7 +49,7 @@ switch ($method) {
             $_SESSION["cognome"] = $row["cognome"];
             $_SESSION["datanascita"] = $row["datanascita"];
             $_SESSION["password"] = $password;
-            $_SESSION["profileimg"] = isValid($row["fotoprofilo"]) ? $row["fotoprofilo"] : null;
+            $_SESSION["profileimg"] = isValid($row["fotoprofilo"]) ? $row["fotoprofilo"] : "./images/defaultprofileimage.png";
             $_SESSION["register_error"] = "";
             $_SESSION["login_error"] = "";
             $sql = "insert into UserLogs(User_email) value('{$row['email']}')";

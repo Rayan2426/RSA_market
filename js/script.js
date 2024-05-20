@@ -1,8 +1,9 @@
-function changePage(root){
+
+function changePage(root) {
     window.location.replace(root);
 }
 
-function show(){
+function show() {
     let viewer = document.getElementById("viewer");
     let filterBox = document.getElementById("filter-box");
 

@@ -16,20 +16,20 @@ checkSessionCredentials($conn);
     <form action="salemanager.php" method="post" enctype="multipart/form-data">
         <input type="text" name="titolo"><br>
         <input type="text" name="descrizione"><br>
-        <?php
-        $sql = "select nome from tipologie order by nome";
-        $result = $conn->query($sql);
-        if($result->num_rows > 0){
-            $select = "<select name='tipologia'>";
-            while(($row = $result->fetch_assoc()) != null){
-                $name = $row["nome"];
-                $select .= "<option value='$name'>$name</option>";
+            <?php
+            $sql = "select nome from tipologie order by nome";
+            $result = $conn->query($sql);
+            if($result->num_rows > 0){
+                $select = "<select name='tipologia'>";
+                while(($row = $result->fetch_assoc()) != null){
+                    $name = $row["nome"];
+                    $select .= "<option value='$name'>$name</option>";
+                }
+                $select .= "</select>";
+                echo $select;
             }
-            $select .= "</select>";
-            echo $select;
-        }
         
-        ?>
+            ?>
         <input type="file" name="foto1"><br>
         <input type="file" name="foto2"><br>
         <input type="file" name="foto3"><br>
@@ -40,7 +40,7 @@ checkSessionCredentials($conn);
     <?php
     echo !isset($_SESSION["sale_handler_error"]) || empty($_SESSION["sale_handler_error"]) 
     ? ""
-    : $_SESSION["sale_handler_error"];
+    : "<p class='errors'> " . $_SESSION["sale_handler_error"] . "</p>";
     ?>
 </body>
 </html>

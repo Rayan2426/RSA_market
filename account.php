@@ -45,7 +45,9 @@ session_start();
                 $cognome = $_SESSION["cognome"];
 
                 $form = "   
-                    <input type='file' name='profileimg'>
+                    <img id='image' src='{$_SESSION['profileimg']}' class='file-image' onclick='document.getElementById(\"imgInp\").click()'>
+                    <input type='file' name='profileimg' id='imgInp' accept='images/*' style='display: none;'>
+                    <p style='color: var(--black)'> Cambia immagine profilo </p>
                     <div class='div-label'>
                         <p>Email</p>
                         <input type='text' name='email' value='$email'>
@@ -81,10 +83,21 @@ session_start();
         </div>
         <?php
             $emessage = !isset($_SESSION["cred_change_status"]) || empty($_SESSION["cred_change_status"]) ? "" : "
-            <p class='text-danger'>{$_SESSION['cred_change_status']}</p>";
+            <p class='errors'>{$_SESSION['cred_change_status']}</p>";
             echo $emessage;
         ?>
     </div>
+
+    <script>
+        let imgInp = document.getElementById("imgInp");
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files;
+            if (file) {
+                let image = document.getElementById("image");
+                image.src = URL.createObjectURL(file);
+            }
+        }
+    </script>
 </body>
 
 </html>
