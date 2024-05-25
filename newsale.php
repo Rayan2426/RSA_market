@@ -38,6 +38,8 @@ checkSessionCredentials($conn);
         ?>    
     </header>
 
+    <h3 class="h3-title"> Inserisci un nuovo annuncio compilando questo piccolo form. </h3>
+
     <form action="salemanager.php" method="post" enctype="multipart/form-data" class="form">
         <div class="div-label">
             <p>Titolo Annuncio</p>
@@ -64,11 +66,12 @@ checkSessionCredentials($conn);
                         </div>";
             }
         ?>
-        <img src="#" id="first_image" style="display: none;">
+
+        <img src="#" id="first_image" style="display: none;" class="sale-img">
         <input type="file" name="foto1" id="foto1">
-        <img src="#" id="second_image" style="display: none;">
+        <img src="#" id="second_image" style="display: none;" class="sale-img">
         <input type="file" name="foto2" id="foto2" style="display: none;">
-        <img src="#" id="third_image" style="display: none;">
+        <img src="#" id="third_image" style="display: none;" class="sale-img">
         <input type="file" name="foto3" id="foto3" style="display: none;">
 
         <input type="hidden" name="method" value="create">
@@ -82,7 +85,6 @@ checkSessionCredentials($conn);
     ?>
 
     <script>
-
             let fotoinput1 = document.getElementById("foto1");
             let fotoinput2 = document.getElementById("foto2");
             let fotoinput3 = document.getElementById("foto3");
@@ -118,69 +120,6 @@ checkSessionCredentials($conn);
                     fotoinput3.style.display = "none";
                 }
             }
-        /*const images = [
-            document.getElementById("foto1"),
-            document.getElementById("foto2"),
-            document.getElementById("foto3")
-        ];
-        
-        let image;
-
-        for(let i = 1; i <= images.lenght; i++){
-            if(images[i].value == ""){
-                switch(i){
-                    case 1:
-                        image = document.getElementById("first_image");
-                        break;
-                    
-                    case 2:
-                        image = document.getElementById("second_image");
-                        break;
-
-                    case 3:
-                        image = document.getElementById("third_image");
-                        break;
-                }
-                showImage(i);
-            }
-        }
-        
-        function showImage(id){
-            switch(id){
-                case 1:
-                    images[0].onchange = evt => {
-                        const [file] = images[0].files;
-                        if (file) {
-                            image.src = URL.createObjectURL(file);
-                        }
-                    }
-
-                    images[1].style.display = "block";
-                    break;
-                
-                case 2:
-                    images[1].onchange = evt => {
-                        const [file] = images[1].files;
-                        if (file) {
-                            image.src = URL.createObjectURL(file);
-                        }
-                    }
-
-                    images[2].style.display = "block";
-                    break;
-
-                case 3:
-                    images[2].onchange = evt => {
-                        const [file] = images[2].files;
-                        if (file) {
-                            image.src = URL.createObjectURL(file);
-                        }
-                    }
-
-                    break;
-            }
-        }
-        */
     </script>
     <script src="./js/script.js"></script>
 </body>

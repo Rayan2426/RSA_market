@@ -68,15 +68,16 @@
             <button style="font-size: 40px;" type="submit">Vai</button>
         </form>
     </div>
+    
     <?php
         $sql = "SELECT Annunci.ID,Annunci.nome,Annunci.descrizione,Users.username,Users.fotoProfilo,Annunci.stato,Annunci.tipologia,Annunci.data
                 FROM Annunci
                 JOIN Users ON Users.email = Annunci.user_email";
         $conditionated = false;
 
-        if(array_key_exists("q",$_GET) && isValid($_GET["q"])){
+        if(array_key_exists("q", $_GET) && isValid($_GET["q"])){
             $q = urlencode($_GET["q"]);
-            $args = explode("%20",$q);
+            $args = explode("%20", $q);
             $sql .= " WHERE (";
             foreach($args as $arg){
                 $sql .= "Annunci.nome LIKE '%$arg%'
@@ -116,16 +117,17 @@
                 $imageann = $conn->query($sql);
                 $imageann = $imageann->fetch_assoc()["urlImg"];
                 
-                echo "<div>
-                    Nome: $title <br>
-                    Descrizione: $desc <br>
-                    Stato: $state <br>
-                    <div>
-                    <img src='$authorpfp' style=\"height:30px; width=30px; border-radius: 15px\"> Autore: $author<br>
-                    </div>
-                    Categoria: $category <br>
-                    Data di pubblicazione: $date <br>
-                    <img src='$imageann' width=300px> <br>
+                echo "<div class='sale-box' onclick='showSale()'>
+                        <img src='$imageann' width=300px>
+                        <p> Nome: $title </p>
+                        <p id='descrizione'> Descrizione: $desc </p>
+                        <p id='stato'> Stato: $state </p>
+                        <div>
+                            <img src='$authorpfp' style=\"height:30px; width=30px; border-radius: 15px\" id='foto_autore'> 
+                            <p id='autore'> Autore: $autho </p>
+                        </div>
+                        <p> Categoria: $category </p>
+                        <p id='dataPubblicazione'> Data di pubblicazione: $date </p>
                     </div>";
             }
         } else{
