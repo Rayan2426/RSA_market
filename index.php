@@ -108,12 +108,11 @@
                 $category = $row["tipologia"];
                 $date = $row["data"];
 
-                $sql = "SELECT urlImg from Foto
+                $sql = "SELECT urlImg from foto
                         WHERE
-                        Annuncio_ID = '$idann'
-                        ORDER BY urlImg
-                        LIMIT 1";
-                        
+                        Annuncio_ID = $idann
+                        ORDER BY urlImg";
+            echo $sql;
                 $imageann = $conn->query($sql);
                 $imageann = $imageann->fetch_assoc()["urlImg"];
                 
