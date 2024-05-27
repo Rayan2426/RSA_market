@@ -117,7 +117,7 @@
                 $imageann = $conn->query($sql);
                 $imageann = $imageann->fetch_assoc()["urlImg"];
                 
-                echo "<div class='sale-box' onclick='showSale()'>
+                echo "<div class='sale-box' href='showsale.php?id=$idann'>
                         <img src='$imageann' width=300px>
                         <p> Nome: $title </p>
                         <p id='descrizione'> Descrizione: $desc </p>
