@@ -12,7 +12,7 @@ CREATE TABLE `Annunci` (
   `ID` int NOT NULL,
   `nome` varchar(50) NOT NULL,
   `descrizione` varchar(255) DEFAULT NULL,
-  `user_email` varchar(128) NOT NULL,
+  `User_email` varchar(128) NOT NULL,
   `stato` varchar(30) NOT NULL,
   `tipologia` varchar(30) NOT NULL,
   `data` timestamp NULL DEFAULT CURRENT_TIMESTAMP
@@ -29,11 +29,12 @@ CREATE TABLE `Proposte` (
   `valore` int NOT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `Annuncio_ID` int NOT NULL,
-  `Stato` varchar(30) NOT NULL,
+  `stato` varchar(30) NOT NULL,
   `User_email` varchar(128) DEFAULT NULL
 );
 
 CREATE TABLE `Stati` (
+  `ID` integer NOT NULL
   `nome` varchar(30) NOT NULL
 );
 
@@ -88,7 +89,7 @@ ALTER TABLE `Proposte`
   ADD KEY `Annuncio_ID` (`Annuncio_ID`);
 
 ALTER TABLE `Stati`
-  ADD PRIMARY KEY (`nome`);
+  ADD PRIMARY KEY (`ID`);
 
 ALTER TABLE `Tipologie`
   ADD PRIMARY KEY (`nome`);
