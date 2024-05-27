@@ -124,7 +124,7 @@
                         <p id='stato'> Stato: $state </p>
                         <div>
                             <img src='$authorpfp' style=\"height:30px; width=30px; border-radius: 15px\" id='foto_autore'> 
-                            <p id='autore'> Autore: $autho </p>
+                            <p id='autore'> Autore: $author </p>
                         </div>
                         <p> Categoria: $category </p>
                         <p id='dataPubblicazione'> Data di pubblicazione: $date </p>
