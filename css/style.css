@@ -5,6 +5,11 @@
     --yellow: rgb(177, 177, 12);
 }
 
+/*General Classes*/
+.display-block {
+    display: block;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -151,7 +156,8 @@ select {
 
 .form button:hover,
 .login-button:hover,
-input[type=file]:hover {
+input[type=file]:hover,
+.redirect-container button:hover {
     cursor: pointer;
     border: 1px solid var(--yellow);
     color: var(--yellow);
@@ -317,4 +323,32 @@ input[type=file]:hover {
 .selected-image {
     height: 400px;
     width: 80%;
+}
+
+.redirect-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    width: 80%;
+}
+
+.input-offer {
+    width: 100px;
+    height: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 2px solid var(--black);
+    border-radius: 10px;
+}
+
+.redirect-container button {
+    width: 220px;
+    height: 50px;
+    border: 2px solid var(--black);
+    background-color: var(--black);
+    border-radius: 10px;
+    font-size: 18px;
+    color: var(--white);
+    transition: 0.4s all ease;
 }
