@@ -1,7 +1,9 @@
 <?php
     session_start();
     include_once("connectdb.php");
+    include_once("credentialscheck.php");
     $conn = getConn();
+    checkSessionCredentials($conn);
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +39,7 @@
         ?>    
     </header>
     <button onclick="changePage('newsale.php')">Inserisci nuovo annuncio</button>
+    <button onclick="changePage('myoffers.php')">Le tue proposte</button>
     <div class="viewer" id="viewer">
         <i class="bi bi-justify-right element-viewer" onclick="show()" id="element-viewer"></i>
     </div>
@@ -112,7 +115,6 @@
                         WHERE
                         Annuncio_ID = $idann
                         ORDER BY urlImg";
-            echo $sql;
                 $imageann = $conn->query($sql);
                 $imageann = $imageann->fetch_assoc()["urlImg"];
                 
