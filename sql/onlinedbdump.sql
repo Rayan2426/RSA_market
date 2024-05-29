@@ -1,58 +1,116 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Creato il: Mag 29, 2024 alle 12:18
+-- Versione del server: 8.0.32
+-- Versione PHP: 8.0.22
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `my_pavlov5d2024`
+--
+CREATE DATABASE IF NOT EXISTS `my_pavlov5d2024` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `my_pavlov5d2024`;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Annunci`
+--
+
 CREATE TABLE `Annunci` (
-  `ID` int NOT NULL,
+  `id` int NOT NULL,
   `nome` varchar(50) NOT NULL,
   `descrizione` varchar(255) DEFAULT NULL,
   `user_email` varchar(128) NOT NULL,
   `stato` varchar(30) NOT NULL,
   `tipologia` varchar(30) NOT NULL,
   `data` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dump dei dati per la tabella `Annunci`
+--
 
-INSERT INTO `Annunci` (`ID`, `nome`, `descrizione`, `user_email`, `stato`, `tipologia`, `data`) VALUES
+INSERT INTO `Annunci` (`id`, `nome`, `descrizione`, `user_email`, `stato`, `tipologia`, `data`) VALUES
 (1, 'Gatto', 'gatto+peloso+ciccione%2C+non+lo+voglio+pi%C3%B9', 'rayan@mohd.com', 'available', 'toys', '2024-05-20 14:34:52'),
 (2, 'Mouse', 'Mouse+gaming+8k+rgb+e+un+succi+in+regalo', 'rayan@mohd.com', 'available', 'electronics', '2024-05-20 17:44:44'),
 (3, 'Fungo', 'dritto+da+super+mario', 'rayan@mohd.com', 'available', 'cooking', '2024-05-20 21:04:49'),
 (4, 'Verifica+di+inglese', 'Verifica+fatta+bene+con+il+voto+9', 'prova@gmail.com', 'available', 'books', '2024-05-21 08:00:33'),
+(22, 'fsdfsdf', 'sdfsdf', 'prova@gmail.com', 'available', 'carpentry', '2024-05-27 19:21:20'),
+(21, 'ciao', 'fffffff', 'prova@gmail.com', 'available', 'toys', '2024-05-27 19:21:05'),
 (20, 'Ciompo', 'tumultando', 'rayan@mohd.com', 'available', 'cooking', '2024-05-24 09:04:32'),
 (19, 'annuncio', 'annuncio+prova', 'ciompo@ciompo.ciompo', 'available', 'beauty', '2024-05-24 08:56:24'),
 (17, 'big+bunda', '%3Cb%3Ebunda%3C%2Fb%3E', 'culo@culo.culo', 'available', 'beauty', '2024-05-22 09:03:32'),
 (18, '%3Cb%3Eculo%3C%2Fb%3E', '%3Cb%3Ebunda%3C%2Fb%3E', '<b>culo</b>@culo.culo', 'available', 'beauty', '2024-05-22 09:28:53');
 
-CREATE TABLE `Foto` (
-  `ID` int NOT NULL,
-  `urlImg` varchar(255) DEFAULT NULL,
-  `Annuncio_ID` int NOT NULL
-) ;
+-- --------------------------------------------------------
 
-INSERT INTO `Foto` (`ID`, `urlImg`, `Annuncio_ID`) VALUES
+--
+-- Struttura della tabella `Foto`
+--
+
+CREATE TABLE `Foto` (
+  `id` int NOT NULL,
+  `urlImg` varchar(255) DEFAULT NULL,
+  `annuncio_id` int NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dump dei dati per la tabella `Foto`
+--
+
+INSERT INTO `Foto` (`id`, `urlImg`, `annuncio_id`) VALUES
 (1, 'uploads/saleimgs//1/1.jpg', 1),
 (2, 'uploads/saleimgs//2/1.jpg', 2),
 (3, 'uploads/saleimgs//2/2.png', 2),
 (4, 'uploads/saleimgs//3/1.jpg', 3),
 (5, 'uploads/saleimgs//4/1.jpg', 4),
+(18, 'uploads/saleimgs//22/1.png', 22),
 (17, 'uploads/saleimgs//20/1.jpg', 20),
 (16, 'uploads/saleimgs//19/1.jpg', 19),
 (14, 'uploads/saleimgs//17/1.jpg', 17),
 (15, 'uploads/saleimgs//18/1.jpg', 18);
 
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Proposte`
+--
+
 CREATE TABLE `Proposte` (
-  `ID` int NOT NULL,
+  `id` int NOT NULL,
   `valore` int NOT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `Annuncio_ID` int NOT NULL,
-  `Stato` varchar(30) NOT NULL,
-  `User_email` varchar(128) DEFAULT NULL
-) ;
+  `annuncio_id` int NOT NULL,
+  `stato` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `user_email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Stati`
+--
 
 CREATE TABLE `Stati` (
   `nome` varchar(30) NOT NULL
-) ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dump dei dati per la tabella `Stati`
+--
 
 INSERT INTO `Stati` (`nome`) VALUES
 ('available'),
@@ -60,10 +118,20 @@ INSERT INTO `Stati` (`nome`) VALUES
 ('deleted'),
 ('waiting');
 
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Tipologie`
+--
+
 CREATE TABLE `Tipologie` (
   `nome` varchar(30) NOT NULL,
   `descrizione` varchar(255) DEFAULT NULL
-) ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dump dei dati per la tabella `Tipologie`
+--
 
 INSERT INTO `Tipologie` (`nome`, `descrizione`) VALUES
 ('beauty', NULL),
@@ -75,13 +143,23 @@ INSERT INTO `Tipologie` (`nome`, `descrizione`) VALUES
 ('science', NULL),
 ('toys', NULL);
 
-CREATE TABLE `UserLogs` (
-  `ID` int NOT NULL,
-  `logTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `User_email` varchar(128) DEFAULT NULL
-) ;
+-- --------------------------------------------------------
 
-INSERT INTO `UserLogs` (`ID`, `logTime`, `User_email`) VALUES
+--
+-- Struttura della tabella `UserLogs`
+--
+
+CREATE TABLE `UserLogs` (
+  `id` int NOT NULL,
+  `logTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dump dei dati per la tabella `UserLogs`
+--
+
+INSERT INTO `UserLogs` (`id`, `logTime`, `user_email`) VALUES
 (1, '2024-05-11 17:35:00', 'rayan@mohd.com'),
 (2, '2024-05-11 17:52:05', 'rayan@mohd.com'),
 (3, '2024-05-12 11:39:54', 'rayan@mohd.com'),
@@ -116,7 +194,11 @@ INSERT INTO `UserLogs` (`ID`, `logTime`, `User_email`) VALUES
 (32, '2024-05-22 15:33:19', 'rayan@mohd.com'),
 (33, '2024-05-24 08:54:18', 'ciompo@ciompo.ciompo'),
 (34, '2024-05-24 09:02:29', 'rayan@mohd.com'),
-(35, '2024-05-25 10:37:44', 'admin@gmail.com');
+(35, '2024-05-25 10:37:44', 'admin@gmail.com'),
+(36, '2024-05-27 10:20:46', 'prova@gmail.com'),
+(37, '2024-05-27 10:21:04', 'prova@gmail.com'),
+(38, '2024-05-27 19:20:33', 'prova@gmail.com'),
+(39, '2024-05-27 19:20:47', 'prova@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -132,7 +214,11 @@ CREATE TABLE `Users` (
   `cognome` varchar(50) NOT NULL,
   `dataNascita` date NOT NULL,
   `fotoProfilo` varchar(255) DEFAULT NULL
-) ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dump dei dati per la tabella `Users`
+--
 
 INSERT INTO `Users` (`username`, `email`, `password`, `nome`, `cognome`, `dataNascita`, `fotoProfilo`) VALUES
 ('rayan2426', 'rayan@mohd.com', '4f8f70f9b4ff19d00e9db7363acd688d233d4857b75db321f197f9a8e69f0813', 'Rayan', 'Mohd', '2005-07-21', 'uploads/profileimgs/rayan2426.jpg'),
@@ -146,46 +232,91 @@ INSERT INTO `Users` (`username`, `email`, `password`, `nome`, `cognome`, `dataNa
 ('ciompo', 'ciompo@ciompo.ciompo', 'ddaed44711777b445df5b14892f0377103156457e615217a39ac9263ec75e01d', 'ciompo', 'ciompo', '2024-05-04', NULL),
 ('AdminUser', 'admin@gmail.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Admin', 'Admin', '2024-06-05', NULL);
 
+--
+-- Indici per le tabelle scaricate
+--
+
+--
+-- Indici per le tabelle `Annunci`
+--
 ALTER TABLE `Annunci`
-  ADD PRIMARY KEY (`ID`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `user_email` (`user_email`),
   ADD KEY `stato` (`stato`),
   ADD KEY `tipologia` (`tipologia`);
 
+--
+-- Indici per le tabelle `Foto`
+--
 ALTER TABLE `Foto`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `Annuncio_ID` (`Annuncio_ID`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Annuncio_ID` (`annuncio_id`);
 
+--
+-- Indici per le tabelle `Proposte`
+--
 ALTER TABLE `Proposte`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `User_email` (`User_email`),
-  ADD KEY `Stato` (`Stato`),
-  ADD KEY `Annuncio_ID` (`Annuncio_ID`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `User_email` (`user_email`),
+  ADD KEY `Stato` (`stato`),
+  ADD KEY `Annuncio_ID` (`annuncio_id`);
 
+--
+-- Indici per le tabelle `Stati`
+--
 ALTER TABLE `Stati`
   ADD PRIMARY KEY (`nome`);
 
+--
+-- Indici per le tabelle `Tipologie`
+--
 ALTER TABLE `Tipologie`
   ADD PRIMARY KEY (`nome`);
 
+--
+-- Indici per le tabelle `UserLogs`
+--
 ALTER TABLE `UserLogs`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `logTime` (`logTime`,`User_email`),
-  ADD KEY `User_email` (`User_email`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `logTime` (`logTime`,`user_email`),
+  ADD KEY `User_email` (`user_email`);
 
+--
+-- Indici per le tabelle `Users`
+--
 ALTER TABLE `Users`
   ADD PRIMARY KEY (`email`),
   ADD UNIQUE KEY `username` (`username`);
 
+--
+-- AUTO_INCREMENT per le tabelle scaricate
+--
+
+--
+-- AUTO_INCREMENT per la tabella `Annunci`
+--
 ALTER TABLE `Annunci`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
+--
+-- AUTO_INCREMENT per la tabella `Foto`
+--
 ALTER TABLE `Foto`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
+--
+-- AUTO_INCREMENT per la tabella `Proposte`
+--
 ALTER TABLE `Proposte`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT per la tabella `UserLogs`
+--
 ALTER TABLE `UserLogs`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
