@@ -36,36 +36,49 @@
             }
         ?>    
     </header>
-    <button onclick="changePage('newsale.php')">Inserisci nuovo annuncio</button>
-    <div class="viewer" id="viewer">
-        <i class="bi bi-justify-right element-viewer" onclick="show()" id="element-viewer"></i>
+
+    <div class="elements-box">
+        <div class="insert-box">
+            <button onclick="changePage('newsale.php')">Inserisci nuovo annuncio</button>
+        </div>
+        <div class="viewer" id="viewer">
+            <i class="bi bi-justify-right element-viewer" onclick="show()" id="element-viewer"></i>
+        </div>
     </div>
 
+
+    <!-- filter boxes -->
     <div class="div-filter" id="filter-box" style="display: none;">
         <i class="bi bi-justify-left element-viewer" onclick="show()" id="element-viewer"></i>  
         <h1>Applica un filtro su:</h1>
-        <form action="index.php" method="get">
+        <form action="index.php" method="get" class="form-filter">
             <div class="div-label">
             <?php
-            $sql = "select nome from Tipologie order by nome";
-            $result = $conn->query($sql);
-            if($result->num_rows > 0){
-                $select = "<select name='category'>
-                            <option value='any'>any</option>";
-                while(($row = $result->fetch_assoc()) != null){
-                    $name = $row["nome"];
-                    $select .= "<option value='$name'>$name</option>";
+                $sql = "select nome from Tipologie order by nome";
+                $result = $conn->query($sql);
+                
+                if($result->num_rows > 0){
+                    $select = "<select name='category'>
+                                <option value='any'>any</option>";
+                    while(($row = $result->fetch_assoc()) != null){
+                        $name = $row["nome"];
+                        $select .= "<option value='$name'>$name</option>";
+                    }
+                    $select .= "</select>";
+                    echo $select;
                 }
-                $select .= "</select>";
-                echo $select;
-            }
-        ?>
+            ?>
             </div>
             <div class="div-label">
                 <p> Nome </p>
                 <input type="text" name="q">
             </div>
-            <button style="font-size: 40px;" type="submit">Vai</button>
+            <div class="div-label">
+                <label>Ordina per data creazione: </label>
+                <input type="checkbox" name="">
+            </div>
+            
+            <button type="submit" style="margin-bottom: 20px">Vai</button>
         </form>
     </div>
     
@@ -112,7 +125,7 @@
                         WHERE
                         Annuncio_ID = $idann
                         ORDER BY urlImg";
-            echo $sql;
+
                 $imageann = $conn->query($sql);
                 $imageann = $imageann->fetch_assoc()["urlImg"];
                 

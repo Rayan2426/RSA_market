@@ -23,7 +23,7 @@
         
         <p> 'Qui va la descrizione dell'annuncio' </p>
         <div class="user-credential">
-            <img src="#">
+            <img src="#" style="height:30px; width: 30px; border-radius: 15px">
             <p> Autore: 'Qui va il nome dell'utente che ha fatto l'annuncio' </p>
         </div>
 
@@ -32,7 +32,7 @@
 
         <div class="redirect-container">
             <button onclick="showForm()" id="offer-button"> Effettua una proposta </button>
-            <button> Torna alla Homepage </button>
+            <button onclick="changePage('index.php')"> Torna alla Homepage </button>
         </div>
 
         <form action="./offermanager.php" method="post" style="display: none" id="offer-form">

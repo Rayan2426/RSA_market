@@ -157,7 +157,9 @@ select {
 .form button:hover,
 .login-button:hover,
 input[type=file]:hover,
-.redirect-container button:hover {
+.redirect-container button:hover,
+.insert-box button:hover,
+.form-filter button:hover {
     cursor: pointer;
     border: 1px solid var(--yellow);
     color: var(--yellow);
@@ -199,7 +201,6 @@ input[type=file]:hover,
 }
 
 /* Index.php classes */
-
 .user-block {
     margin-right: 50px;
     width: 100px;
@@ -240,9 +241,9 @@ input[type=file]:hover,
     transition: 0.4s all ease;
 }
 
+/*index.php filter classes*/
 .viewer {
     float: right;
-    margin-top: 40px;
     margin-right: 40px;
     font-size: 60px;
     transition: 0.4s all ease;
@@ -255,6 +256,7 @@ input[type=file]:hover,
     float: right;
     width: 30%;
     border: 3px solid black;
+    border-radius: 10px 0 0 10px;
     background-color: #E0E0E0;
 }
 
@@ -274,11 +276,50 @@ input[type=file]:hover,
     font-size: 24px;
 }
 
-/*index.php sales classes*/
-.sale-box {
-    border: 2px solid var(--black);
+.form-filter {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/*insert div*/
+.elements-box {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.insert-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.insert-box button,
+.div-filter button {
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    height: 40px;
+    font-size: 18px;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 10px;
+    transition: 0.4s all ease;
+}
+
+/*index.php sales classes*/
+.sale-box {
+    width: 30%;
+    border: 2px solid var(--black);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 /* newsale.php classes */
@@ -320,7 +361,7 @@ input[type=file]:hover,
     height: 70px;
 }
 
-.selected-image {
+.selected-image img {
     height: 400px;
     width: 80%;
 }

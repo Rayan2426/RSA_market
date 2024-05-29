@@ -3,12 +3,21 @@ function changePage(root) {
     window.location.replace(root);
 }
 
+let isDragged = false;
+
 function show() {
     let viewer = document.getElementById("viewer");
     let filterBox = document.getElementById("filter-box");
 
-    viewer.style.display = "none";
-    filterBox.style.display = "block";
+    if (!isDragged) {
+        viewer.style.display = "none";
+        filterBox.style.display = "block";
+        isDragged = true;
+    } else {
+        viewer.style.display = "block";
+        filterBox.style.display = "none";
+        isDragged = false;
+    }
 }
 
 let isSelected = false;
