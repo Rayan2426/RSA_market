@@ -19,9 +19,17 @@
                 redirect("index.php");
             }
 
+            $sql = "SELECT count(*) FROM Proposte
+                    JOIN Annunci ON Annunci.id = Proposte.annuncio_id
+                    WHERE Proposte.email = '$email' AND Annunci.id = $saleid";
+            $hasAlreadyOffered = $conn->query($sql);
 
-            $sql = "insert into Proposte(valore,Annuncio_ID,Stato,User_email)
-                    value($sum,$saleid,'available','$email')";
+            if($hasAlreadyOffered){
+                redirect("./showsale.php?id=$saleid");
+            }
+
+            $sql = "INSERT INTO Proposte(valore,annuncio_id,stato,user_email)
+                    VALUE($sum,$saleid,'available','$email')";
             $conn->query($sql);
 
             if($conn->affected_rows > 0){
