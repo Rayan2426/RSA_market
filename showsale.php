@@ -1,3 +1,52 @@
+<?php
+session_start();
+include_once("connectdb.php");
+include_once("credentialscheck.php");
+$conn = getConn();
+checkSessionCredentials($conn);
+
+if(!isset($_GET) || !array_key_exists("id",$_GET)){
+    redirect("index.php");
+}
+
+$saleid = $_GET["id"];
+
+if(!is_numeric($saleid)){
+    redirect("index.php");
+}
+
+$sql = "SELECT Annunci.nome,Annunci.descrizione,Users.username,Users.fotoProfilo,Annunci.stato,Annunci.tipologia,Annunci.data
+        FROM Annunci
+        JOIN Users ON Annunci.user_email = Users.email
+        WHERE Annunci.id = '$saleid'";
+$result = $conn->query($sql);
+$sale = null;
+if($result->num_rows > 0 ){
+    $sale = $result->fetch_assoc();
+} else {
+    redirect("index.php");
+}
+
+$salename = $sale["nome"];
+$saledesc = $sale["descrizione"];
+$saleauthor = $sale["username"];
+$saleauthorprofileimg = $sale["fotoProfilo"] ? $sale["fotoProfilo"] : "./images/defaultprofileimage.png";
+$salecat = $sale["tipologia"];
+$salestate = $sale["stato"];
+$saledate = $sale["data"];
+
+$images = [];
+
+$sql = "SELECT urlImg FROM Foto
+        WHERE annuncio_id = '$saleid'";
+
+$result = $conn->query($sql);
+
+while (($row = $result->fetch_assoc()) != null) {
+    $images[] = $row["urlImg"];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,28 +56,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <title>RSA Market | annuncio </title>
+    <title>RSA Market | <?php echo $salename?> </title>
 </head>
 <body style="display: flex; align-items: center; justify-content: center;">
     <div class="sale-container">
-        <h1> Qui va il nome dell'annuncio </h1>
+        <h1> <?php echo $salename?> </h1>
 
-        <div class="selected-image"></div>
+        <div class="selected-image"><?php echo "<img src='{$images[0]}'>" ?></div>
 
         <div class="images-container">
-            <img src="images/logo.jpg">
-            <img src="#">
-            <img src="#">
+            <?php
+                for ($i=0; $i < count($images); $i++) { 
+                    $url = $images[$i];
+                    echo "<img src='$url'>";
+                }
+            ?>
         </div>
         
-        <p> 'Qui va la descrizione dell'annuncio' </p>
+        <p> <?php echo $saledesc ?> </p>
         <div class="user-credential">
-            <img src="#">
-            <p> Autore: 'Qui va il nome dell'utente che ha fatto l'annuncio' </p>
+            <img src=<?php echo "'$saleauthorprofileimg'"?>>
+            <p> Autore: <?php echo $saleauthor ?> </p>
         </div>
 
-        <p> Categoria: 'Qui va la categoria dell'annuncio' </p>
-        <p> Annuncio pubblicato in data: 'Qui va la data di pubblicazione dell'annuncio' </p>
+        <p> Categoria: <?php echo $salecat ?> </p>
+        <p> Annuncio pubblicato in data: <?php echo $saledate ?> </p>
 
         <div class="redirect-container">
             <button onclick="showForm()" id="offer-button"> Effettua una proposta </button>

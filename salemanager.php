@@ -58,7 +58,7 @@ switch ($method) {
                     redirect($redpage);
                 }
 
-                $target_dir = "uploads/saleimgs/";
+                $target_dir = "uploads/saleimgs";
                 $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
 
@@ -78,7 +78,7 @@ switch ($method) {
                 //if there wasnt any previous error and file is successfully saved
                 if (empty($outcome) && move_uploaded_file($filepath, $target_file)) {
 
-                    $sql = "insert into Foto(urlImg,Annuncio_ID)
+                    $sql = "insert into Foto(urlImg,annuncio_id)
                             value('$target_file','$saleid')";
 
                     $conn->query($sql);
