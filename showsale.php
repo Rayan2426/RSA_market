@@ -31,20 +31,18 @@
         <p> Annuncio pubblicato in data: 'Qui va la data di pubblicazione dell'annuncio' </p>
 
         <div class="redirect-container">
-            
-            <button onclick="() => {
-                let form = document.getElementById('offer-form');
-                form.style.display = 'block'; 
-            }"> Effettua una proposta </button>
+            <button onclick="showForm()" id="offer-button"> Effettua una proposta </button>
             <button> Torna alla Homepage </button>
         </div>
 
         <form action="./offermanager.php" method="post" style="display: none" id="offer-form">
-            <input type="number" name="sum">
+            <input type="number" name="sum" class="input-offer">
             <input type="hidden" name="saleid" value="1">
             <input type="hidden" name="method" value="create">
             <input type="submit" value="Invia Proposta">
         </form>
     </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
