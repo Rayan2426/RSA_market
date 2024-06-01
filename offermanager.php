@@ -8,7 +8,7 @@
     $method = $_POST["method"];
 
     function error($msg){
-        $_SESSION["offer_manager_error"] = $msg;
+        $_SESSION["offer_handler_error"] = $msg;
     }
 
     switch ($method) {
@@ -22,13 +22,13 @@
                 redirect($redpage);
             }
 
-            $sql = "SELECT count(*) FROM Proposte
+            $sql = "SELECT count(*) AS numero FROM Proposte
                     JOIN Annunci ON Annunci.id = Proposte.annuncio_id
-                    WHERE Proposte.email = '$email' AND Annunci.id = $saleid";
+                    WHERE Proposte.user_email = '$email' AND Annunci.id = $saleid";
 
             $hasAlreadyOffered = $conn->query($sql);
-
-            if($hasAlreadyOffered->num_rows > 0){
+            
+            if($hasAlreadyOffered->fetch_assoc()["numero"] != "0"){
                 error("Hai già fatto una proposta a questo annuncio");
                 redirect($redpage);
             } else{
@@ -36,11 +36,11 @@
             }
 
             $sql = "SELECT stato FROM  Annunci
-                    WHERE Annunci.id = $saleid";
+                    WHERE Annunci.id = '$saleid'";
                 
             $result = $conn->query($sql);
-
-            switch ($$result->fetch_assoc()["stato"]) {
+            $state = $result->fetch_assoc()["stato"];
+            switch ($state) {
                 case 'closed':
                     error("Impossibile effettuare la proposta: l'annuncio ha trovato un'acquirente");
                     redirect($redpage);

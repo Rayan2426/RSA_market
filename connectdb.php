@@ -21,5 +21,5 @@ function getConn()
 
 function isValid($var)
 {
-    return $var && isset($var) && !empty($var);
+    return isset($var) && !empty($var);
 }

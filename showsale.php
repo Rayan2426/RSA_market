@@ -97,13 +97,17 @@ $canOffer = !($_SESSION["email"] === $saleauthoremail);
                 if($canOffer){
                     echo"<form action=\"./offermanager.php\" method=\"post\" style=\"display: none\" id=\"offer-form\">
                     <input type=\"number\" name=\"sum\" class=\"input-offer\">
-                    <input type=\"hidden\" name=\"saleid\" value=\"1\">
+                    <input type=\"hidden\" name=\"saleid\" value=\"$saleid\">
                     <input type=\"hidden\" name=\"method\" value=\"create\">
                     <input type=\"submit\" value=\"Invia Proposta\">
                 </form>";
                 }
+
+                if(isset($_SESSION["offer_handler_error"]) && !empty($_SESSION["offer_handler_error"])){
+                    echo $_SESSION["offer_handler_error"];
+                    $_SESSION["offer_handler_error"] = null;
+                }
             ?>
-        
     </div>
 
     <script src="js/script.js"></script>
