@@ -27,8 +27,8 @@ if($result->num_rows > 0 ){
     redirect("index.php");
 }
 
-$salename = $sale["nome"];
-$saledesc = $sale["descrizione"];
+$salename = htmlspecialchars(urldecode($sale["nome"]));
+$saledesc = htmlspecialchars(urldecode($sale["descrizione"]));
 $saleauthor = $sale["username"];
 $saleauthorprofileimg = $sale["fotoProfilo"] ? $sale["fotoProfilo"] : "./images/defaultprofileimage.png";
 $salecat = $sale["tipologia"];

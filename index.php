@@ -119,8 +119,8 @@
         if($results->num_rows > 0){
             while (($row = $results->fetch_assoc()) != null) {
                 $idann = $row["ID"];
-                $title = urldecode($row["nome"]);
-                $desc = urldecode($row["descrizione"]);
+                $title = htmlspecialchars(urldecode($row["nome"]));
+                $desc = htmlspecialchars(urldecode($row["descrizione"]));
                 $state = $row["stato"];
                 $author = $row["username"];
                 $authorpfp = isset($row["fotoProfilo"]) ? $row["fotoProfilo"] : "./images/defaultprofileimage.png";
