@@ -39,6 +39,8 @@ checkSessionCredentials($conn);
     </header>
 
     <h3 class="h3-title"> Inserisci un nuovo annuncio compilando questo piccolo form. </h3>
+    <button onclick="changePage('index.php')"> Torna alla Homepage </button>
+
 
     <form action="salemanager.php" method="post" enctype="multipart/form-data" class="form">
         <div class="div-label">

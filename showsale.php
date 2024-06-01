@@ -79,7 +79,7 @@ $canOffer = !($_SESSION["email"] === $saleauthoremail);
         <p> <?php echo $saledesc ?> </p>
         <div class="user-credential">
             <img src=<?php echo "'$saleauthorprofileimg'"?> style="width: 50px; height: 50px;">
-            <p> Autore: <?php echo $saleauthor ?> </p>
+            <p> <?php echo $saleauthor ?> </p>
         </div>
 
         <p> Categoria: <?php echo $salecat ?> </p>
