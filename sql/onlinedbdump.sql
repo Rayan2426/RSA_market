@@ -1,7 +1,3 @@
-CREATE DATABASE IF NOT EXISTS `my_pavlov5d2024` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `my_pavlov5d2024`;
-
-
 CREATE TABLE `Annunci` (
   `id` int NOT NULL,
   `nome` varchar(50) NOT NULL,
@@ -50,8 +46,8 @@ CREATE TABLE `Proposte` (
   `valore` int NOT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `annuncio_id` int NOT NULL,
-  `stato` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `user_email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+  `stato` varchar(30) NOT NULL,
+  `user_email` varchar(128) DEFAULT NULL
 );
 
 
@@ -83,7 +79,7 @@ INSERT INTO `Tipologie` (`nome`, `descrizione`) VALUES
 CREATE TABLE `UserLogs` (
   `id` int NOT NULL,
   `logTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+  `user_email` varchar(128) DEFAULT NULL
 );
 
 INSERT INTO `UserLogs` (`id`, `logTime`, `user_email`) VALUES
@@ -192,4 +188,3 @@ ALTER TABLE `Proposte`
 
 ALTER TABLE `UserLogs`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-COMMIT;
