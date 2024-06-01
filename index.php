@@ -120,7 +120,7 @@
                 $category = $row["tipologia"];
                 $date = $row["data"];
 
-                $sql = "SELECT urlImg from foto
+                $sql = "SELECT urlImg from Foto
                         WHERE
                         Annuncio_ID = $idann
                         ORDER BY urlImg";
