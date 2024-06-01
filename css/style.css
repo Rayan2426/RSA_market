@@ -5,7 +5,7 @@
     --yellow: rgb(177, 177, 12);
 }
 
-/*General Classes*/
+/*General Classes - per ora inutilizzate*/
 .display-block {
     display: block;
 }
@@ -28,6 +28,7 @@ body {
     text-align: center;
 }
 
+/*Header classes*/
 header,
 footer {
     width: 100%;
@@ -59,6 +60,17 @@ header img:hover {
     text-align: center;
 }
 
+.logout-button{
+    font-size: 50px;
+    transition: 0.4s all ease;
+}
+
+.logout-button{
+    border-color: red;
+    transition: 0.4s all ease;
+}
+
+/*Pages classes*/
 .h3-title {
     font-size: 40px;
     text-align: center;
