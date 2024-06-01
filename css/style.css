@@ -179,14 +179,12 @@ input[type=file]:hover,
 }
 
 .div-links {
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 40px;
     margin-bottom: 40px;
     font-size: 18px;
-    width: 35%;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -262,6 +260,7 @@ input[type=file]:hover,
 }
 
 .div-filter {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -324,7 +323,13 @@ input[type=file]:hover,
 }
 
 /*index.php sales classes*/
+.sales-container{
+    margin-top: 20px;
+}
+
 .sale-box {
+    float: left;
+    margin: 10px;
     width: 30%;
     border: 2px solid var(--black);
     border-radius: 10px;

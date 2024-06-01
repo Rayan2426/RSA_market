@@ -42,16 +42,12 @@
     <div class="elements-box">
         <div class="insert-box">
             <button onclick="changePage('newsale.php')">Inserisci nuovo annuncio</button>
+            <button onclick="changePage('myoffers.php')">Le tue proposte</button>
         </div>
         <div class="viewer" id="viewer">
             <i class="bi bi-justify-right element-viewer" onclick="show()" id="element-viewer"></i>
         </div>
-    <button onclick="changePage('newsale.php')">Inserisci nuovo annuncio</button>
-    <button onclick="changePage('myoffers.php')">Le tue proposte</button>
-    <div class="viewer" id="viewer">
-        <i class="bi bi-justify-right element-viewer" onclick="show()" id="element-viewer"></i>
     </div>
-
 
     <!-- filter boxes -->
     <div class="div-filter" id="filter-box" style="display: none;">
@@ -79,15 +75,12 @@
                 <p> Nome </p>
                 <input type="text" name="q">
             </div>
-            <div class="div-label">
-                <label>Ordina per data creazione: </label>
-                <input type="checkbox" name="">
-            </div>
             
             <button type="submit" style="margin-bottom: 20px">Vai</button>
         </form>
     </div>
     
+    <div class="sales-container">
     <?php
         $sql = "SELECT Annunci.ID,Annunci.nome,Annunci.descrizione,Users.username,Users.fotoProfilo,Annunci.stato,Annunci.tipologia,Annunci.data
                 FROM Annunci
@@ -137,20 +130,18 @@
                 echo "<div class='sale-box' onclick='changePage(\"showsale.php?id=$idann\")'>
                         <img src='$imageann' width=300px>
                         <p> Nome: $title </p>
-                        <p id='descrizione'> Descrizione: $desc </p>
-                        <p id='stato'> Stato: $state </p>
                         <div>
                             <img src='$authorpfp' style=\"height:30px; width=30px; border-radius: 15px\" id='foto_autore'> 
-                            <p id='autore'> Autore: $author </p>
+                            <span id='autore'> $author </span>
                         </div>
-                        <p> Categoria: $category </p>
-                        <p id='dataPubblicazione'> Data di pubblicazione: $date </p>
+                        <p style='margin: 10px;'> Categoria: $category </p>
                     </div>";
             }
         } else{
             echo "nessun annuncio trovato che rispetti i criteri di ricerca<br>{$conn->error}";
         }
     ?>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
