@@ -15,7 +15,7 @@ if(!is_numeric($saleid)){
     redirect("index.php");
 }
 
-$sql = "SELECT Annunci.nome,Annunci.descrizione,Users.username,Users.fotoProfilo,Annunci.stato,Annunci.tipologia,Annunci.data
+$sql = "SELECT Annunci.nome,Annunci.descrizione,Users.email,Users.username,Users.fotoProfilo,Annunci.stato,Annunci.tipologia,Annunci.data
         FROM Annunci
         JOIN Users ON Annunci.user_email = Users.email
         WHERE Annunci.id = '$saleid'";
@@ -29,6 +29,7 @@ if($result->num_rows > 0 ){
 
 $salename = htmlspecialchars(urldecode($sale["nome"]));
 $saledesc = htmlspecialchars(urldecode($sale["descrizione"]));
+$saleauthoremail = $sale["email"];
 $saleauthor = $sale["username"];
 $saleauthorprofileimg = $sale["fotoProfilo"] ? $sale["fotoProfilo"] : "./images/defaultprofileimage.png";
 $salecat = $sale["tipologia"];
@@ -45,6 +46,8 @@ $result = $conn->query($sql);
 while (($row = $result->fetch_assoc()) != null) {
     $images[] = $row["urlImg"];
 }
+
+$canOffer = !($_SESSION["email"] === $saleauthoremail);
 
 ?>
 <!DOCTYPE html>
@@ -83,16 +86,24 @@ while (($row = $result->fetch_assoc()) != null) {
         <p> Annuncio pubblicato in data: <?php echo $saledate ?> </p>
 
         <div class="redirect-container">
-            <button onclick="showForm()" id="offer-button"> Effettua una proposta </button>
+            <?php
+                if($canOffer){
+                    echo"<button onclick=\"showForm()\" id=\"offer-button\"> Effettua una proposta </button>";
+                }
+            ?>
             <button onclick="changePage('index.php')"> Torna alla Homepage </button>
         </div>
-
-        <form action="./offermanager.php" method="post" style="display: none" id="offer-form">
-            <input type="number" name="sum" class="input-offer">
-            <input type="hidden" name="saleid" value="1">
-            <input type="hidden" name="method" value="create">
-            <input type="submit" value="Invia Proposta">
-        </form>
+        <?php
+                if($canOffer){
+                    echo"<form action=\"./offermanager.php\" method=\"post\" style=\"display: none\" id=\"offer-form\">
+                    <input type=\"number\" name=\"sum\" class=\"input-offer\">
+                    <input type=\"hidden\" name=\"saleid\" value=\"1\">
+                    <input type=\"hidden\" name=\"method\" value=\"create\">
+                    <input type=\"submit\" value=\"Invia Proposta\">
+                </form>";
+                }
+            ?>
+        
     </div>
 
     <script src="js/script.js"></script>

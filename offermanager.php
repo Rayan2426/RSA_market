@@ -7,33 +7,58 @@
 
     $method = $_POST["method"];
 
+    function error($msg){
+        $_SESSION["offer_manager_error"] = $msg;
+    }
+
     switch ($method) {
         case 'create':
             $sum = $_POST["sum"];
             $saleid = $_POST["saleid"];
             $email = $_SESSION["email"];
+            $redpage = "./showsale.php?id=$saleid";
 
-            if(!is_numeric($sum)){
-                redirect("index.php");
-            } else if( intval($sum) <= 0){
-                redirect("index.php");
+            if(!is_numeric($sum) || intval($sum) <= 0){
+                redirect($redpage);
             }
 
             $sql = "SELECT count(*) FROM Proposte
                     JOIN Annunci ON Annunci.id = Proposte.annuncio_id
                     WHERE Proposte.email = '$email' AND Annunci.id = $saleid";
+
             $hasAlreadyOffered = $conn->query($sql);
 
-            if($hasAlreadyOffered){
-                redirect("./showsale.php?id=$saleid");
+            if($hasAlreadyOffered->num_rows > 0){
+                error("Hai già fatto una proposta a questo annuncio");
+                redirect($redpage);
+            } else{
+                error("L'annuncio selezionato non esiste");
+            }
+
+            $sql = "SELECT stato FROM  Annunci
+                    WHERE Annunci.id = $saleid";
+                
+            $result = $conn->query($sql);
+
+            switch ($$result->fetch_assoc()["stato"]) {
+                case 'closed':
+                    error("Impossibile effettuare la proposta: l'annuncio ha trovato un'acquirente");
+                    redirect($redpage);
+                    break;
+                case 'deleted':
+                    error("Impossibile effettuare la proposta: l'annuncio e' stato cancellato");
+                    redirect($redpage);
+                    break;
             }
 
             $sql = "INSERT INTO Proposte(valore,annuncio_id,stato,user_email)
                     VALUE($sum,$saleid,'available','$email')";
+
             $conn->query($sql);
 
             if($conn->affected_rows > 0){
-                echo "success";
+                error(null);
+                redirect($redpage);
             } else{
                 echo "failure";
             }
@@ -41,7 +66,6 @@
             break;
         
         default:
-            # code...
-            break;
+            echo "metodo inesistente";
     }
 ?>

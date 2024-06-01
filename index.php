@@ -84,25 +84,24 @@
     <?php
         $sql = "SELECT Annunci.ID,Annunci.nome,Annunci.descrizione,Users.username,Users.fotoProfilo,Annunci.stato,Annunci.tipologia,Annunci.data
                 FROM Annunci
-                JOIN Users ON Users.email = Annunci.user_email";
-        $conditionated = false;
+                JOIN Users ON Users.email = Annunci.user_email
+                WHERE Annunci.stato = 'available' ";
 
         if(array_key_exists("q", $_GET) && isValid($_GET["q"])){
             $q = urlencode($_GET["q"]);
             $args = explode("%20", $q);
-            $sql .= " WHERE (";
+            $sql .= " AND (";
             foreach($args as $arg){
                 $sql .= "Annunci.nome LIKE '%$arg%'
                         OR Annunci.descrizione LIKE '%$arg%'
                         OR Users.username LIKE '%$arg%' OR ";
             }
             $sql = substr($sql, 0, -3) . ")";
-            $conditionated = true;
         }
 
         if(array_key_exists("category",$_GET) && isValid($_GET["category"]) && $_GET["category"] !== "any"){
             $category = urlencode($_GET["category"]);
-            $sql .= $conditionated ? " AND " : " WHERE ";
+            $sql .= " AND ";
             $sql .= " Annunci.tipologia = '$category'";
             $conditionated = true;
         }
@@ -124,6 +123,7 @@
                         WHERE
                         Annuncio_ID = $idann
                         ORDER BY urlImg";
+
                 $imageann = $conn->query($sql);
                 $imageann = $imageann->fetch_assoc()["urlImg"];
                 
