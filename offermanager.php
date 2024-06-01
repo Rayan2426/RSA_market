@@ -58,11 +58,10 @@
 
             if($conn->affected_rows > 0){
                 error(null);
-                redirect($redpage);
             } else{
-                echo "failure";
+                error("Errore nell'inserimento dell'annuncio nel database");
             }
-
+            redirect($redpage);
             break;
         
         default:
