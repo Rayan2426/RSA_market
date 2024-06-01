@@ -43,6 +43,7 @@
         <div class="insert-box">
             <button onclick="changePage('newsale.php')">Inserisci nuovo annuncio</button>
             <button onclick="changePage('myoffers.php')">Le tue proposte</button>
+            <button onclick="changePage('mysales.php')">I tuoi annunci</button>
         </div>
         <div class="viewer" id="viewer">
             <i class="bi bi-justify-right element-viewer" onclick="show()" id="element-viewer"></i>
