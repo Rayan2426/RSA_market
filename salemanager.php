@@ -55,7 +55,6 @@ switch ($method) {
                 //Check if the file is bigger than 5 megabytes
                 if ($img['size'] > 5242880) {
                     $outcome .= "Il file inserito non può essere più grande di 5MB <br>";
-                    redirect($redpage);
                 }
 
                 $target_dir = "uploads/saleimgs";
@@ -85,14 +84,12 @@ switch ($method) {
 
                 } else {
                     $imgcount--;
-                    $outcome .= "Spiacente, c'è stato un errore durante l'inserimento di una foto dell'annuncio";
+                    $_SESSION["sale_handler_error"] .= "Spiacente, c'è stato un errore durante l'inserimento di una foto dell'annuncio<br>" . $outcome;
                 }
             }
         }
 
         if($imgcount == 0){
-            $_SESSION["sale_handler_error"] = "deve essere caricata almeno un'immagine<br>
-                                                $outcome";
             redirect($redpage); 
         }
         redirect($redpage);

@@ -84,6 +84,7 @@ checkSessionCredentials($conn);
         echo !isset($_SESSION["sale_handler_error"]) || empty($_SESSION["sale_handler_error"]) 
         ? ""
         : "<p class='errors'> " . $_SESSION["sale_handler_error"] . "</p>";
+        $_SESSION["sale_handler_error"] = null;
     ?>
 
     <script>
