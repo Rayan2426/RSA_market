@@ -34,7 +34,7 @@ checkSessionCredentials($conn);
                 
                 echo 
                     "<div class='sale-box'>
-                        <p> Valore: $sum </p>
+                        <p> Valore: $sum €</p>
                         <p> Annuncio:<a href='./showsale.php?id=$saleid'> $salename </a> <p>
                         <p> Stato: $state </p>
                         <p> Data effettuazione proposta: $time </p>

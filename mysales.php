@@ -48,7 +48,10 @@ checkSessionCredentials($conn);
                         <p> Annuncio: $title </p>
                         <p> Stato: $state </p>
                         <p> Data di pubblicazione: $data </p>
-                        <p> Numero di offerte: $num </p>
+                        <p> Numero di offerte: $num </p>";
+                switch ($state) {
+                    case 'available':
+                        echo "
                         <form action='manageoffers.php' method='post'>
                         <input type='submit' value='Vedi le proposte di questo annuncio'>
                         <input type='hidden' name='saleid' value='$id'>
@@ -57,8 +60,25 @@ checkSessionCredentials($conn);
                         <input type='submit' value='Elimina annuncio'>
                         <input type='hidden' name='saleid' value='$id'>
                         <input type='hidden' name='method' value='delete'>
-                        </form>
-                    </div>";
+                        </form>";
+                        break;
+                    case "closed":
+                        $sql = "SELECT Users.username, Proposte.valore FROM Proposte
+                                JOIN Users ON Users.email = Proposte.user_email
+                                WHERE Proposte.annuncio_id = $id
+                                AND Proposte.stato = 'accepted'";
+                        $result = $conn->query($sql);
+                        $row = $result->fetch_assoc();
+                        $username = $row["username"];
+                        $sum = $row["valore"];
+                        echo "<p>Acquirente: <a href='./showuser.php?user=$username'>$username</a></p>
+                                <p>Prezzo di vendita: $sum €</p>";
+                        break;
+                    default:
+                        
+                        break;
+                }
+                echo "</div>";
             }
         } else{
             echo "<p class='errors'> Non hai ancora pubblicato annunci {$conn->error} </p>";

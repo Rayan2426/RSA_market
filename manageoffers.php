@@ -53,7 +53,7 @@ $title = $result->fetch_assoc()["nome"];
                 $authorprofileimg = array_key_exists("fotoProfilo",$row) && isValid($row["fotoProfilo"]) ? $row["fotoProfilo"] : "./images/defaultprofileimage.png";
                 $authorusername = $row["username"];
 
-                echo "Somma: $sum <br>
+                echo "Somma: $sum €<br>
                     Utente: $authorusername <img src='$authorprofileimg' style='height:30px; width=30px; border-radius: 15px' id='foto_autore'> <br>
                     Stato: $state <br>
                     Data: $time <br>";
