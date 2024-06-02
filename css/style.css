@@ -17,6 +17,16 @@ body {
     height: 100vh;
 }
 
+.links{
+    text-decoration: none;
+    color: var(--black);
+}
+
+.links:hover{
+    cursor: pointer;
+    color: var(--yellow);
+}
+
 .errors {
     color: var(--red);
     font-size: 18px;

@@ -65,7 +65,9 @@ $canOffer = !($_SESSION["email"] === $saleauthoremail);
     <div class="sale-container">
         <h1> <?php echo $salename?> </h1>
 
-        <div class="selected-image"><?php echo "<img src='{$images[0]}'>" ?></div>
+        <div class="selected-image">
+            <?php echo "<img src='{$images[0]}'>" ?>
+        </div>
 
         <div class="images-container">
             <?php
@@ -78,8 +80,9 @@ $canOffer = !($_SESSION["email"] === $saleauthoremail);
         
         <p> <?php echo $saledesc ?> </p>
         <div class="user-credential">
-            <a href=<?php echo "'./showuser.php?user=" . $saleauthor . "'";?>><img src=<?php echo "'$saleauthorprofileimg'"?> style="width: 50px; height: 50px;">
-            <p> <?php echo $saleauthor ?> </p>
+            <a href=<?php echo "'./showuser.php?user=" . $saleauthor . "'";?> class="links">
+                <img src=<?php echo "'$saleauthorprofileimg'"?> style="width: 50px; height: 50px;">
+                <p> <?php echo $saleauthor ?> </p>
             </a>
         </div>
 
@@ -111,13 +114,13 @@ $canOffer = !($_SESSION["email"] === $saleauthoremail);
 
                 switch ($salestate) {
                     case 'closed':
-                        echo "L'annuncio e' stato chiuso: il venditore ha trovato un'acquirente";
+                        echo "<p> L'annuncio e' stato chiuso: il venditore ha trovato un'acquirente </p>";
                         break;
                     case 'deleted':
-                        echo "L'annuncio e' stato eliminato";
+                        echo "<p> L'annuncio e' stato eliminato </p>";
                         break;
                     case 'available':
-                        echo "L'annuncio e' ancora disponibile";
+                        echo "<p> L'annuncio e' ancora disponibile </p>";
                         break;
                 }
             ?>
