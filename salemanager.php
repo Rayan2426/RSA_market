@@ -89,8 +89,10 @@ switch ($method) {
             }
         }
 
-        if($imgcount == 0){
-            redirect($redpage); 
+        if($imgcount <= 0){
+            $_SESSION["sale_handler_error"] .= "Devi inserire almeno un'immagine<br>";
+            $sql = "DELETE FROM Annunci WHERE id = $saleid";
+            $conn->query($sql);
         }
         redirect($redpage);
         break;
