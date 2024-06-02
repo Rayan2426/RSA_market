@@ -149,7 +149,7 @@
         }
     ?>
     </div>
-    
+    <!--
     <footer>
         <p class="footer-paragraph">RSA Market è offerto da: ©</p>
         <div class="developer-container">
@@ -182,6 +182,7 @@
             </div>
         </div>
     </footer>
+-->
 
     <script src="js/script.js"></script>
 </body>

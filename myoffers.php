@@ -19,7 +19,7 @@ checkSessionCredentials($conn);
 <body>
     <?php
         $email = $_SESSION["email"];
-        $sql = "select Proposte.valore,Proposte.time,Proposte.stato, Annunci.id, Annunci.nome
+        $sql = "select Proposte.valore,Proposte.time, Proposte.stato, Annunci.id, Annunci.nome
                 FROM Proposte
                 JOIN Annunci ON Annunci.id = Proposte.annuncio_id
                 ORDER BY Proposte.time DESC";
@@ -36,7 +36,7 @@ checkSessionCredentials($conn);
                     "<div class='sale-box'>
                         <p> Valore: $sum </p>
                         <p> Annuncio:<a href='./showsale.php?id=$saleid'> $salename </a> <p>
-                        <p> <Stato: $state </p>
+                        <p> Stato: $state </p>
                         <p> Data effettuazione proposta: $time </p>
                     </div>";
             }
