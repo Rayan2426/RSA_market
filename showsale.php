@@ -73,7 +73,7 @@ $canOffer = !($_SESSION["email"] === $saleauthoremail);
             <?php
                 for ($i=0; $i < count($images); $i++) { 
                     $url = $images[$i];
-                    echo "<img src='$url'>";
+                    echo "<img src='$url' id='img$i' onclick='changeImg(\"img$i\")' style='cursor: pointer'>";
                 }
             ?>
         </div>
@@ -127,5 +127,12 @@ $canOffer = !($_SESSION["email"] === $saleauthoremail);
     </div>
 
     <script src="js/script.js"></script>
+    <script>
+        function changeImg(id){
+            let maingimg =document.getElementById("mainimage");
+            let newimg =document.getElementById(id);
+            maingimg.src =newimg.src;
+        }
+    </script>
 </body>
 </html>
