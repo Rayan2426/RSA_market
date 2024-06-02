@@ -58,8 +58,8 @@
                     $imageann = $imageann->fetch_assoc()["urlImg"];
                     
                     echo "<div class='sale-box' onclick='changePage(\"showsale.php?id=$idann\")'>
-                            <img src='$imageann' width=300px>
-                            <p> Nome: $title </p>
+                            <a href='./showsale.php?id=$idann'><img src='$imageann' width=300px>
+                            <p> Nome:  $title</p> </a>
                             <p style='margin: 10px;'> Categoria: $category </p>
                         </div>";
                 }
