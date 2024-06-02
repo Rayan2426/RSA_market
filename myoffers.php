@@ -10,7 +10,11 @@ checkSessionCredentials($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSAMarket | Le Tue Offerte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>RSAMarket | Le Mie Offerte</title>
 </head>
 <body>
     <?php
@@ -27,16 +31,24 @@ checkSessionCredentials($conn);
                 $state = $row["stato"];
                 $salename = $row["nome"];
                 $saleid = $row["id"];
-                echo "<div>
-                    Valore: $sum <br>
-                    Annuncio:<a href='./showsale.php?id=$saleid'> $salename </a><br>
-                    Stato: $state <br>
-                    Data effettuazione proposta: $time <br>
+                
+                echo 
+                    "<div class='sale-box'>
+                        <p> Valore: $sum </p>
+                        <p> Annuncio:<a href='./showsale.php?id=$saleid'> $salename </a> <p>
+                        <p> <Stato: $state </p>
+                        <p> Data effettuazione proposta: $time </p>
                     </div>";
             }
         } else{
-            echo "non hai ancora fatto nessuna proposta {$conn->error}";
+            echo "<p class='errors'> non hai ancora fatto nessuna proposta {$conn->error} </p>";
         }
     ?>
+
+    <div class="redirect-div">
+        <button onclick="changePage('index.php')">Torna alla Homepage</button>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

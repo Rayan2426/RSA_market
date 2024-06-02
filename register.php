@@ -68,8 +68,6 @@
             
             <div class="div-links">
                 <a href="login.php"> Hai già un account? </a>
-                |
-                <a href="#"> Password dimenticata? </a>
             </div>
         </div>
         <?php
