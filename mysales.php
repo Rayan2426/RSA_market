@@ -48,8 +48,9 @@ checkSessionCredentials($conn);
                         <p> Annuncio: $title </p>
                         <p> Stato: $state </p>
                         <p> Data di pubblicazione: $data </p>
-                        <p> Numero di offerte: $num </p>
-                        <form action='manageoffers.php' method='post'>
+                        <p> Numero di offerte: $num </p>";
+                if($state == "available"){
+                    echo "<form action='manageoffers.php' method='post'>
                         <input type='submit' value='Vedi le proposte di questo annuncio'>
                         <input type='hidden' name='saleid' value='$id'>
                         </form>
@@ -57,8 +58,20 @@ checkSessionCredentials($conn);
                         <input type='submit' value='Elimina annuncio'>
                         <input type='hidden' name='saleid' value='$id'>
                         <input type='hidden' name='method' value='delete'>
-                        </form>
-                    </div>";
+                        </form>";
+                } else if ($state == "closed"){
+                    $sql = "SELECT Proposte.valore, Users.username FROM Proposte
+                            JOIN Users ON Users.email = Proposte.user_email
+                            WHERE Proposte.annuncio_id = $id
+                            AND Proposte.stato = 'accepted'";
+                    $result = $conn->query($sql);
+                    $row = $result->fetch_assoc();
+                    $sum = $row["valore"];
+                    $buyerusername = $row["username"];
+                    echo "<p>Acquirente: $buyerusername </p>
+                    <p>Somma offerta: $sum </p>";
+                }
+                echo "</div>";
             }
         } else{
             echo "<p class='errors'> Non hai ancora pubblicato annunci {$conn->error} </p>";

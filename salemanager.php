@@ -98,6 +98,46 @@ switch ($method) {
         redirect($redpage);
         break;
     case 'delete':
+        $redpage = "mysales.php";
+        $saleid = $_POST["saleid"];
+
+        if(!isset($saleid) || !isValid( $saleid ) || !is_numeric($saleid) ){
+            redirect($redpage);
+        }
+        
+        $email = $_SESSION["email"];
+
+        $sql = "SELECT * FROM Annunci
+                WHERE Annunci.id = $saleid
+                AND Annunci.user_email = '$email'
+                ";
+
+        $result = $conn->query($sql);
+
+        if(!($result->num_rows > 0)){
+            redirect($redpage);
+        }
+
+        $files = glob('./uploads/saleimgs/' . $saleid . '/*.*');
+        foreach($files as $file){
+            if(is_file($file)) {
+                unlink($file);
+            }
+        }
+        rmdir('./uploads/saleimgs/'. $saleid);
+
+        $sql = "DELETE FROM Foto
+                WHERE id_annuncio = $saleid";
+        $conn->query($sql);
+        $sql = "UPDATE Annunci
+                SET stato = 'deleted'
+                WHERE id = $saleid";
+        $conn->query($sql);
+        $sql = "UPDATE Proposte
+                SET stato = 'deleted'
+                WHERE annuncio_id = $saleid";
+        $conn->query($sql);
+        redirect($redpage);
         break;
     default:
         redirect($redpage);
