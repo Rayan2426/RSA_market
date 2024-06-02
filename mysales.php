@@ -24,7 +24,7 @@ checkSessionCredentials($conn);
         if ($results->num_rows > 0) {
             while ($row = $results->fetch_assoc()) {
                 $id = $row["id"];
-                $title = $row["nome"];
+                $title = htmlspecialchars(urldecode($row["nome"]));
                 $state = $row["stato"];
                 $data = $row["data"];
                 $num = 0;
@@ -45,6 +45,15 @@ checkSessionCredentials($conn);
                         Stato: $state <br>
                         Data di pubblicazione: $data <br>
                         Numero di offerte: $num <br>
+                        <form action='manageoffers.php' method='post'>
+                        <input type='submit' value='Vedi le proposte di questo annuncio'>
+                        <input type='hidden' name='saleid' value='$id'>
+                        </form>
+                        <form action='salemanager.php' method='post'>
+                        <input type='submit' value='Elimina annuncio'>
+                        <input type='hidden' name='saleid' value='$id'>
+                        <input type='hidden' name='method' value='delete'>
+                        </form>
                     </div>";
             }
         } else{

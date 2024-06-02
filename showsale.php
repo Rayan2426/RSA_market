@@ -107,6 +107,18 @@ $canOffer = !($_SESSION["email"] === $saleauthoremail);
                     echo $_SESSION["offer_handler_error"];
                     $_SESSION["offer_handler_error"] = null;
                 }
+
+                switch ($salestate) {
+                    case 'closed':
+                        echo "L'annuncio e' stato chiuso: il venditore ha trovato un'acquirente";
+                        break;
+                    case 'deleted':
+                        echo "L'annuncio e' stato eliminato";
+                        break;
+                    case 'available':
+                        echo "L'annuncio e' ancora disponibile";
+                        break;
+                }
             ?>
     </div>
 
