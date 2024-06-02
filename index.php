@@ -133,11 +133,13 @@
                 $imageann = $imageann->fetch_assoc()["urlImg"];
                 
                 echo "<div class='sale-box'>
-                        <a href='showsale.php?id=$idann'><img src='$imageann' width=300px>
-                        <p> Nome: $title </p></a>
+                        <a href='showsale.php?id=$idann' class='links'>
+                            <img src='$imageann' width=300px>
+                            <p> Nome: $title </p>
+                        </a>
                         <div>
                             <img src='$authorpfp' style=\"height:30px; width=30px; border-radius: 15px\" id='foto_autore'> 
-                            <a id='autore' href='showuser.php?user=$author'> $author </a>
+                            <a id='autore' href='showuser.php?user=$author' class='links'> $author </a>
                         </div>
                         <p style='margin: 10px;'> Categoria: $category </p>
                     </div>";
@@ -147,6 +149,39 @@
         }
     ?>
     </div>
+    
+    <footer>
+        <p class="footer-paragraph">RSA Market è offerto da: ©</p>
+        <div class="developer-container">
+            <div>
+                <p>Lorenzo Socci</p>
+                <p>Sviluppatore Front-End</p>
+                <div class="social-container">
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-github"></i>
+                    <i class="bi bi-tiktok"></i>
+                </div>
+            </div>
+            <div>
+                <p>Anatolie Pavlov</p>
+                <p>Project Manager - Sviluppatore Database</p>
+                <div class="social-container">
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-github"></i>
+                    <i class="bi bi-tiktok"></i>
+                </div>
+            </div>
+            <div>
+                <p>Rayan Moh'd</p>
+                <p>Sviluppatore Back-End</p>
+                <div class="social-container">
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-github" onclick="changePage('https://github.com/Rayan2426')"></i>
+                    <i class="bi bi-tiktok"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/script.js"></script>
 </body>
