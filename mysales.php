@@ -50,13 +50,13 @@ checkSessionCredentials($conn);
                         <p> Data di pubblicazione: $data </p>
                         <p> Numero di offerte: $num </p>
                         <form action='manageoffers.php' method='post'>
-                        <input type='submit' value='Vedi le proposte di questo annuncio'>
-                        <input type='hidden' name='saleid' value='$id'>
+                            <input type='submit' value='Vedi le Proposte' class='offer-button'>
+                            <input type='hidden' name='saleid' value='$id'>
                         </form>
                         <form action='salemanager.php' method='post'>
-                        <input type='submit' value='Elimina annuncio'>
-                        <input type='hidden' name='saleid' value='$id'>
-                        <input type='hidden' name='method' value='delete'>
+                            <input type='submit' value='Elimina annuncio' class='delete-button'>
+                            <input type='hidden' name='saleid' value='$id'>
+                            <input type='hidden' name='method' value='delete'>
                         </form>
                     </div>";
             }

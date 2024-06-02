@@ -41,8 +41,7 @@ body {
 }
 
 /*Header classes*/
-header,
-footer {
+header {
     width: 100%;
     height: 210px;
     background-color: var(--black);
@@ -80,6 +79,60 @@ header img:hover {
 .logout-button{
     border-color: red;
     transition: 0.4s all ease;
+}
+
+/*Footer classes*/
+footer{
+    width: 100%;
+    height: 210px;
+    background-color: var(--black);
+}
+
+.footer-paragraph{
+    padding-top: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: var(--white);
+}
+
+.developer-container{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.devoloper-container div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.developer-container div p{
+    color: var(--white);
+    font-size: 16px;
+}
+
+.social-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.social-container i{
+    color: var(--white);
+    font-size: 20px;
+    transition: all 0.4s ease;
+}
+
+.social-container i:hover{
+    cursor: pointer;
+    color: var(--yellow);
+    transition: all 0.4s ease; 
 }
 
 /*Pages classes*/
@@ -141,7 +194,9 @@ select {
     border-radius: 10px;
 }
 
-.form button {
+.form button,
+.offer-button,
+.delete-button {
     margin: 30px;
     width: 150px;
     height: 40px;
@@ -170,7 +225,9 @@ input[type=file]:hover,
 .redirect-container button:hover,
 .insert-box button:hover,
 .form-filter button:hover,
-.redirect-div button:hover {
+.redirect-div button:hover,
+.offer-button:hover,
+.delete-button:hover {
     cursor: pointer;
     border: 1px solid var(--yellow);
     color: var(--yellow);
