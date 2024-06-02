@@ -29,7 +29,7 @@ checkSessionCredentials($conn);
                 $sum = $row["valore"];
                 $time = $row["time"];
                 $state = $row["stato"];
-                $salename = $row["nome"];
+                $salename = htmlspecialchars(urldecode($row["nome"]));
                 $saleid = $row["id"];
                 
                 echo 
