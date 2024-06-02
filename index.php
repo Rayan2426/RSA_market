@@ -132,12 +132,12 @@
                 $imageann = $conn->query($sql);
                 $imageann = $imageann->fetch_assoc()["urlImg"];
                 
-                echo "<div class='sale-box' onclick='changePage(\"showsale.php?id=$idann\")'>
-                        <img src='$imageann' width=300px>
-                        <p> Nome: $title </p>
+                echo "<div class='sale-box'>
+                        <a href='showsale.php?id=$idann'><img src='$imageann' width=300px>
+                        <p> Nome: $title </p></a>
                         <div>
                             <img src='$authorpfp' style=\"height:30px; width=30px; border-radius: 15px\" id='foto_autore'> 
-                            <span id='autore'> $author </span>
+                            <a id='autore' href='showuser.php?user=$author'> $author </a>
                         </div>
                         <p style='margin: 10px;'> Categoria: $category </p>
                     </div>";

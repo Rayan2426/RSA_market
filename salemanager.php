@@ -55,7 +55,6 @@ switch ($method) {
                 //Check if the file is bigger than 5 megabytes
                 if ($img['size'] > 5242880) {
                     $outcome .= "Il file inserito non può essere più grande di 5MB <br>";
-                    redirect($redpage);
                 }
 
                 $target_dir = "uploads/saleimgs";
@@ -85,19 +84,59 @@ switch ($method) {
 
                 } else {
                     $imgcount--;
-                    $outcome .= "Spiacente, c'è stato un errore durante l'inserimento di una foto dell'annuncio";
+                    $_SESSION["sale_handler_error"] .= "Spiacente, c'è stato un errore durante l'inserimento di una foto dell'annuncio<br>" . $outcome;
                 }
             }
         }
 
-        if($imgcount == 0){
-            $_SESSION["sale_handler_error"] = "deve essere caricata almeno un'immagine<br>
-                                                $outcome";
-            redirect($redpage); 
+        if($imgcount <= 0){
+            $_SESSION["sale_handler_error"] .= "Devi inserire almeno un'immagine<br>";
+            $sql = "DELETE FROM Annunci WHERE id = $saleid";
+            $conn->query($sql);
         }
         redirect($redpage);
         break;
     case 'delete':
+        $redpage = "mysales.php";
+        $saleid = $_POST["saleid"];
+
+        if(!isset($saleid) || !isValid( $saleid ) || !is_numeric($saleid) ){
+            redirect($redpage);
+        }
+        
+        $email = $_SESSION["email"];
+
+        $sql = "SELECT * FROM Annunci
+                WHERE Annunci.id = $saleid
+                AND Annunci.user_email = '$email'
+                ";
+
+        $result = $conn->query($sql);
+
+        if(!($result->num_rows > 0)){
+            redirect($redpage);
+        }
+
+        $files = glob('./uploads/saleimgs/' . $saleid . '/*.*');
+        foreach($files as $file){
+            if(is_file($file)) {
+                unlink($file);
+            }
+        }
+        rmdir('./uploads/saleimgs/'. $saleid);
+
+        $sql = "DELETE FROM Foto
+                WHERE id_annuncio = $saleid";
+        $conn->query($sql);
+        $sql = "UPDATE Annunci
+                SET stato = 'deleted'
+                WHERE id = $saleid";
+        $conn->query($sql);
+        $sql = "UPDATE Proposte
+                SET stato = 'deleted'
+                WHERE annuncio_id = $saleid";
+        $conn->query($sql);
+        redirect($redpage);
         break;
     default:
         redirect($redpage);

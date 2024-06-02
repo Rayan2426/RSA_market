@@ -204,6 +204,26 @@ switch ($method) {
         $oldpass = $_POST["vecchiapassword"];
         $newpass = $_POST["nuovapassword"];
 
+        if (preg_match("#[<>\"'%;(){}&/\\ `]#i", $newemail)) {
+            $_SESSION["cred_change_status"] = "L'email non puo' contenere i seguenti caratteri: # [] <> \" ' % ; () & / \\ o spazi";
+            redirect($redpage);
+        }
+
+        if (preg_match("#[<>\"'%;(){}&./\\ `]#i", $newusername)) {
+            $_SESSION["cred_change_status"] = "L'username non puo' contenere i seguenti caratteri: # [] <> \" ' % ; () & / . \\ o spazi";
+            redirect($redpage);
+        }
+
+        if (preg_match("#[<>\"'%;(){}&.\\/`]#i", $newname)) {
+            $_SESSION["cred_change_status"] = "Il nome non puo' contenere i seguenti caratteri: # [] <> \" ' % ; () & / . \\";
+            redirect($redpage);
+        }
+
+        if (preg_match("#[<>\"'%;(){}&.\\/`]#i", $newsurname)) {
+            $_SESSION["cred_change_status"] = "Il cognome non può contenere i seguenti caratteri: # [] <> \" ' % ; () & / . \\";
+            redirect($redpage);
+        }
+
         //CURRENT SESSION CREDENTIALS
         $currentemail = $_SESSION["email"];
         $currentusername = $_SESSION["username"];
@@ -214,7 +234,7 @@ switch ($method) {
         //REDRIRECTING IF ANY OF THE ESSENTIAL POST DATA IS INVALID
         if (!isValid($newemail) || !isValid($newname) || !isValid($newsurname) || !isValid($newusername)) {
             $_SESSION["cred_change_status"] = "Campi non validi! Prova di nuovo.";
-            redirect("account.php");
+            redirect($redpage);
         }
 
 

@@ -103,7 +103,7 @@
                     WHERE id = $saleid";
             $conn->query($sql);
 
-            echo $conn->affected_rows . " " . $conn->error . " " . $sql;
+            redirect("mysales.php");
 
             break;
         default:
