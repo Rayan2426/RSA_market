@@ -25,18 +25,22 @@
             <h1> RSA Market </h1>
             <p> Tutto quello che vuoi, proponendo il prezzo! </p>
         </div>
-        <?php
-            if(!isset($_SESSION["email"])){
-                echo "<button onclick=changePage('login.php') class='login-button'> Vai al Login </button>";
-            }
-            else{
-                echo "<div class='user-block' onclick=changePage('account.php')>";
-                $profileimg = $_SESSION['profileimg'] ? $_SESSION['profileimg'] : "./images/defaultprofileimage.png";
-                echo "<img class='profile-img' onclick='showOptions()' src=$profileimg>";
-                echo "<p> {$_SESSION['username']} </p>";
-                echo "</div>";
-            }
-        ?>    
+        <div style="margin-right: 70px; display: flex; align-items: center; justify-content: space-around;">
+            <?php
+                if(!isset($_SESSION["email"])){
+                    echo "<button onclick=changePage('login.php') class='login-button'> Vai al Login </button>";
+                }
+                else{
+                    echo "<div class='user-block' onclick=changePage('account.php')>";
+                    $profileimg = $_SESSION['profileimg'] ? $_SESSION['profileimg'] : "./images/defaultprofileimage.png";
+                    echo "<img class='profile-img' onclick='showOptions()' src=$profileimg>";
+                    echo "<p> {$_SESSION['username']} </p>";
+                    echo "</div>";
+                }
+            ?>
+
+            <i class="bi bi-power logout-icon" onclick="changePage('login.php')"></i>
+        </div>
     </header>
 
     <div class="elements-box">
@@ -139,7 +143,7 @@
                     </div>";
             }
         } else{
-            echo "nessun annuncio trovato che rispetti i criteri di ricerca<br>{$conn->error}";
+            echo "<p class='errors'> Nessun annuncio trovato che rispetti i criteri di ricerca<br>{$conn->error} </p>";
         }
     ?>
     </div>

@@ -10,7 +10,11 @@ checkSessionCredentials($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSAMarket | I Tuoi Annunci</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>RSAMarket | I Miei Annunci</title>
 </head>
 <body>
     <?php
@@ -39,12 +43,12 @@ checkSessionCredentials($conn);
                     $num = $offers->fetch_assoc()["num_proposte"];
                 }
 
-                echo "<div>
-                        ID: $id <br>
-                        Annuncio: $title <br>
-                        Stato: $state <br>
-                        Data di pubblicazione: $data <br>
-                        Numero di offerte: $num <br>
+                echo "<div class='sale-box'>
+                        <p> ID: $id </p>
+                        <p> Annuncio: $title </p>
+                        <p> Stato: $state </p>
+                        <p> Data di pubblicazione: $data </p>
+                        <p> Numero di offerte: $num </p>
                         <form action='manageoffers.php' method='post'>
                         <input type='submit' value='Vedi le proposte di questo annuncio'>
                         <input type='hidden' name='saleid' value='$id'>
@@ -57,8 +61,14 @@ checkSessionCredentials($conn);
                     </div>";
             }
         } else{
-            echo "non hai ancora pubblicato annunci {$conn->error}";
+            echo "<p class='errors'> Non hai ancora pubblicato annunci {$conn->error} </p>";
         }
     ?>
+
+    <div class="redirect-div">
+        <button onclick="changePage('index.php')">Torna alla Homepage</button>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

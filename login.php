@@ -14,6 +14,7 @@ unset($_SESSION["email"]);
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+    <title>RSA Market | Login</title>
 </head>
 
 <body>

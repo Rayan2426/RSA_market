@@ -5,11 +5,6 @@
     --yellow: rgb(177, 177, 12);
 }
 
-/*General Classes - per ora inutilizzate*/
-.display-block {
-    display: block;
-}
-
 * {
     padding: 0;
     margin: 0;
@@ -26,6 +21,23 @@ body {
     color: var(--red);
     font-size: 18px;
     text-align: center;
+}
+
+.redirect-div{
+    width: 210px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.redirect-div button{
+    margin-top: 100px;
+    width: 200px;
+    height: 40px;
+    font-size: 18px;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 10px;
+    transition: 0.4s all ease;
 }
 
 /*Header classes*/
@@ -121,20 +133,6 @@ header img:hover {
     border: 4px solid var(--yellow);
 }
 
-/*Per ora inutilizzata*/
-input[type=file] {
-    padding-top: 10px;
-    padding-left: 15%;
-    margin-top: 20px;
-    width: 400px;
-    height: 40px;
-    font-size: 18px;
-    background-color: var(--black);
-    color: var(--white);
-    border-radius: 10px;
-    transition: 0.4s all ease;
-}
-
 select {
     width: 400px;
     height: 40px;
@@ -171,7 +169,8 @@ select {
 input[type=file]:hover,
 .redirect-container button:hover,
 .insert-box button:hover,
-.form-filter button:hover {
+.form-filter button:hover,
+.redirect-div button:hover {
     cursor: pointer;
     border: 1px solid var(--yellow);
     color: var(--yellow);
@@ -208,6 +207,18 @@ input[type=file]:hover,
 
 .div-links a:hover::after {
     width: 100%;
+}
+
+.logout-icon{
+    font-size: 50px;
+    color: var(--white);
+    transition: 0.4s all ease;
+}
+
+.logout-icon:hover{
+    cursor: pointer;
+    color: red;
+    transition: 0.4s all ease;
 }
 
 /* Index.php classes */
@@ -337,6 +348,7 @@ input[type=file]:hover,
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    gap: 15px;
 }
 
 /* newsale.php classes */
