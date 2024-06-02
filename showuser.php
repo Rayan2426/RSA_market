@@ -36,7 +36,7 @@
                     <p> Email: $email </p>        
                 </div>";
 
-            $sql ="SELECT Annunci.ID,Annunci.nome,Annunci.descrizione,Annunci.stato,Annunci.tipologia,Annunci.data
+            $sql = "SELECT Annunci.ID,Annunci.nome,Annunci.descrizione,Annunci.stato,Annunci.tipologia,Annunci.data
                     FROM Annunci
                     JOIN Users ON Annunci.user_email = Users.email
                     WHERE username='$username'
