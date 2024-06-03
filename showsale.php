@@ -92,7 +92,7 @@ $canOffer = !($_SESSION["email"] === $saleauthoremail);
         <div class="redirect-container">
             <?php
                 if($canOffer){
-                    echo"<button onclick=\"showForm()\" id=\"offer-button\"> Effettua una proposta </button>";
+                    echo"<button onclick=\"showForm()\" id=\"offer-button\" > Effettua una proposta </button>";
                 }
             ?>
             <button onclick="changePage('index.php')"> Torna alla Homepage </button>
@@ -103,7 +103,7 @@ $canOffer = !($_SESSION["email"] === $saleauthoremail);
                     <input type=\"number\" name=\"sum\" class=\"input-offer\">
                     <input type=\"hidden\" name=\"saleid\" value=\"$saleid\">
                     <input type=\"hidden\" name=\"method\" value=\"create\">
-                    <input type=\"submit\" value=\"Invia Proposta\">
+                    <input type=\"submit\" class='redirect-butt' value=\"Invia Proposta\">
                 </form>";
                 }
 

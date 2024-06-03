@@ -39,8 +39,6 @@ checkSessionCredentials($conn);
     </header>
 
     <h3 class="h3-title"> Inserisci un nuovo annuncio compilando questo piccolo form. </h3>
-    <button onclick="changePage('index.php')"> Torna alla Homepage </button>
-
 
     <form action="salemanager.php" method="post" enctype="multipart/form-data" class="form">
         <div class="div-label">
@@ -84,7 +82,6 @@ checkSessionCredentials($conn);
         echo !isset($_SESSION["sale_handler_error"]) || empty($_SESSION["sale_handler_error"]) 
         ? ""
         : "<p class='errors'> " . $_SESSION["sale_handler_error"] . "</p>";
-        $_SESSION["sale_handler_error"] = null;
     ?>
 
     <script>

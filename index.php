@@ -149,39 +149,6 @@
         }
     ?>
     </div>
-    
-    <footer>
-        <p class="footer-paragraph">RSA Market è offerto da: ©</p>
-        <div class="developer-container">
-            <div>
-                <p>Lorenzo Socci</p>
-                <p>Sviluppatore Front-End</p>
-                <div class="social-container">
-                    <i class="bi bi-instagram"></i>
-                    <i class="bi bi-github"></i>
-                    <i class="bi bi-tiktok"></i>
-                </div>
-            </div>
-            <div>
-                <p>Anatolie Pavlov</p>
-                <p>Project Manager - Sviluppatore Database</p>
-                <div class="social-container">
-                    <i class="bi bi-instagram"></i>
-                    <i class="bi bi-github"></i>
-                    <i class="bi bi-tiktok"></i>
-                </div>
-            </div>
-            <div>
-                <p>Rayan Moh'd</p>
-                <p>Sviluppatore Back-End</p>
-                <div class="social-container">
-                    <i class="bi bi-instagram"></i>
-                    <i class="bi bi-github" onclick="changePage('https://github.com/Rayan2426')"></i>
-                    <i class="bi bi-tiktok"></i>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <script src="js/script.js"></script>
 </body>

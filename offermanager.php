@@ -8,7 +8,7 @@
     $method = $_POST["method"];
 
     function error($msg){
-        $_SESSION["offer_handler_error"] = $msg;
+        $_SESSION["offer_handler_error"] = "<p class='errors'> $msg </p>";
     }
     
     $saleid = $_POST["saleid"];
@@ -25,6 +25,7 @@
             $redpage = "./showsale.php?id=$saleid";
 
             if(!is_numeric($sum) || intval($sum) <= 0){
+                error("Il valore dell'offerta non è valido");
                 redirect($redpage);
             }
 

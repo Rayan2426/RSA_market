@@ -87,7 +87,6 @@ unset($_SESSION["email"]);
                 </div>
             </div>
         </div>
-        
     </footer>
 </body>
 

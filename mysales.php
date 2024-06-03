@@ -13,10 +13,38 @@ checkSessionCredentials($conn);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>RSAMarket | I Miei Annunci</title>
 </head>
 <body>
+    <header>
+        <img src="images/logo.jpg" onclick="changePage('index.php')">
+        <div class="div-header">
+            <h1> RSA Market </h1>
+            <p> Tutto quello che vuoi, proponendo il prezzo! </p>
+        </div>
+        <div style="margin-right: 70px; display: flex; align-items: center; justify-content: space-around;">
+            <?php
+                if(!isset($_SESSION["email"])){
+                    echo "<button onclick=changePage('login.php') class='login-button'> Vai al Login </button>";
+                }
+                else{
+                    echo "<div class='user-block' onclick=changePage('account.php')>";
+                    $profileimg = $_SESSION['profileimg'] ? $_SESSION['profileimg'] : "./images/defaultprofileimage.png";
+                    echo "<img class='profile-img' onclick='showOptions()' src=$profileimg>";
+                    echo "<p> {$_SESSION['username']} </p>";
+                    echo "</div>";
+                }
+            ?>
+
+            <i class="bi bi-power logout-icon" onclick="changePage('login.php')"></i>
+        </div>
+    </header>
+
+    <div class="redirect-div">
+        <button onclick="changePage('index.php')">Torna alla Homepage</button>
+    </div>
     <?php
         $email = $_SESSION["email"];
 
@@ -53,11 +81,11 @@ checkSessionCredentials($conn);
                     case 'available':
                         echo "
                         <form action='manageoffers.php' method='post'>
-                        <input type='submit' value='Vedi le proposte di questo annuncio'>
+                        <input type='submit'  class='redirect-butt' value='Vedi le proposte'>
                         <input type='hidden' name='saleid' value='$id'>
                         </form>
                         <form action='salemanager.php' method='post'>
-                        <input type='submit' value='Elimina annuncio'>
+                        <input type='submit' class='redirect-butt' value='Elimina annuncio'>
                         <input type='hidden' name='saleid' value='$id'>
                         <input type='hidden' name='method' value='delete'>
                         </form>";
@@ -85,9 +113,7 @@ checkSessionCredentials($conn);
         }
     ?>
 
-    <div class="redirect-div">
-        <button onclick="changePage('index.php')">Torna alla Homepage</button>
-    </div>
+  
 
     <script src="js/script.js"></script>
 </body>
