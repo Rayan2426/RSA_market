@@ -77,10 +77,6 @@
             echo $emessage;
         ?>
     </div>
-
-    <footer>
-
-    </footer>
 </body>
 
 </html>

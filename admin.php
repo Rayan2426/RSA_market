@@ -60,9 +60,8 @@
         if($quser){
             $sql .= " WHERE Users.username = '$quser'";
         }
-        $sql .=" ORDER BY Userlogs.logTime DESC";
+        $sql .=" ORDER BY UserLogs.logTime DESC";
         $results = $conn->query($sql);
-
         if($results->num_rows > 0){
             while($row = $results->fetch_assoc()){
                 $username = $row["username"];
@@ -79,5 +78,7 @@
             }
         }
     ?>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -87,7 +87,8 @@
                     
                     echo "<div class='sale-box' style='margin-left: auto; margin-right: auto; margin: 20px;' onclick='changePage(\"showsale.php?id=$idann\")'>
                             <a href='./showsale.php?id=$idann' class='links' style='margin: 10px'>
-                                <img src='$imageann' width=300px> $title
+                                <img src='$imageann' width=300px>
+                                <p style='text-align: center;'> $title </p>
                             </a>
                             <p style='margin: 10px'> Categoria: $category </p>
                         </div>";
@@ -99,5 +100,7 @@
             echo "<p class='errors'> Nessun parametro di ricerca selezionato</p>";
         }
     ?>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

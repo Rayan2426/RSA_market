@@ -446,6 +446,8 @@ input[type=file]:hover,
 
 /* showsale.php classes */
 .sale-container {
+    margin: auto;
+    margin-top: 20px;
     width: 80%;
     border: 3px solid var(--black);
     display: flex;
@@ -484,7 +486,7 @@ input[type=file]:hover,
 
 .selected-image img {
     height: 400px;
-    width: 80%;
+    width: 100%;
 }
 
 .redirect-container {
